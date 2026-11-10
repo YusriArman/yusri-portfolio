@@ -75,7 +75,6 @@ button {
   display: grid;
   gap: var(--space-4);
   margin-bottom: var(--space-8);
-  max-width: 40ch;
 }
 
 .section__title {
@@ -88,6 +87,7 @@ button {
 .section__intro {
   font-size: var(--text-lg);
   color: var(--color-ink-soft);
+  max-width: 44ch;
 }
 
 .section--dark .section__intro {
