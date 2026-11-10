@@ -1,6 +1,9 @@
 // Projects shown in the Projects section, in this order.
-// To add one: copy an entry, change every field, and put its preview image in
-// /public/images/projects/<slug>/preview.jpg (4:3, at least 1600 x 1200 px).
+// To add one: copy an entry and change every field.
+//
+// Screenshots: put the original file in photo-originals/projects/<slug>/ and run
+// `npm run photos`. It writes an optimised copy to /public/images/projects/<slug>/preview.jpg.
+// Then set:  image: { src: '/images/projects/<slug>/preview.jpg', alt: 'Describe the screenshot' },
 
 import type { Project } from './types'
 

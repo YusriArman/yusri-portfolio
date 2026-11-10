@@ -130,6 +130,7 @@ button {
 
 /* Rounded media frames with a quiet hover zoom */
 .media {
+  position: relative;
   overflow: hidden;
   border-radius: var(--radius-lg);
   background: var(--color-surface);
@@ -143,7 +144,9 @@ button {
 }
 
 a.media:hover img,
-a.media:focus-visible img {
+a.media:focus-visible img,
+button.media:hover img,
+button.media:focus-visible img {
   transform: scale(1.03);
 }
 

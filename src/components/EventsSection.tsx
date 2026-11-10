@@ -1,19 +1,25 @@
 import { events } from '../content/events'
 import { site } from '../content/site'
 import type { Event } from '../content/types'
+import { PhotoSlot, SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
 import { Gallery } from './Gallery'
+import { imageStyle } from './imageStyle'
 import './EventsSection.css'
 
 function EventEntry({ event }: { event: Event }) {
+  const planning = usePhotoPlanning()
   return (
     <article className="event" id={`event-${event.slug}`}>
-      {event.featuredPhoto && (
+      {event.featuredPhoto ? (
         <figure className="event__feature">
           <div className="media event__photo">
-            <img src={event.featuredPhoto.src} alt={event.featuredPhoto.alt} loading="lazy" />
+            <img src={event.featuredPhoto.src} alt={event.featuredPhoto.alt} loading="lazy" style={imageStyle(event.featuredPhoto)} />
+            {planning && <SlotBadge kind="eventFeatured" />}
           </div>
           {event.featuredPhoto.caption && <figcaption className="event__caption">{event.featuredPhoto.caption}</figcaption>}
         </figure>
+      ) : (
+        planning && <PhotoSlot kind="eventFeatured" folder={`events/${event.slug}/featured`} className="event__photo" />
       )}
 
       <div className="event__grid">
@@ -47,7 +53,7 @@ function EventEntry({ event }: { event: Event }) {
         </div>
       </div>
 
-      <Gallery items={event.gallery} title={event.title} />
+      <Gallery items={event.gallery} title={event.title} slug={event.slug} />
     </article>
   )
 }

@@ -1,8 +1,15 @@
 import type { Project } from '../content/types'
+import { PhotoSlot, SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
+import { imageStyle } from './imageStyle'
 import './ProjectCard.css'
 
 function Media({ project }: { project: Project }) {
+  const planning = usePhotoPlanning()
+
   if (!project.image) {
+    if (planning) {
+      return <PhotoSlot kind="project" name={project.title} folder={`projects/${project.slug}`} className="project__slot" />
+    }
     // No image yet: a typographic tile so the layout still reads as a project preview.
     return (
       <div className="project__media project__media--text media" aria-hidden="true">
@@ -10,21 +17,20 @@ function Media({ project }: { project: Project }) {
       </div>
     )
   }
-  const img = (
-    <img
-      src={project.image.src}
-      alt={project.image.alt}
-      loading="lazy"
-      style={project.image.fit === 'contain' ? { objectFit: 'contain', padding: '12%', background: project.image.background } : undefined}
-    />
+
+  const content = (
+    <>
+      <img src={project.image.src} alt={project.image.alt} loading="lazy" style={imageStyle(project.image)} />
+      {planning && <SlotBadge kind="project" />}
+    </>
   )
   const primary = project.links[0]
   return primary ? (
     <a className="project__media media" href={primary.href} target="_blank" rel="noreferrer" aria-label={`${project.title}: ${primary.label}`}>
-      {img}
+      {content}
     </a>
   ) : (
-    <div className="project__media media">{img}</div>
+    <div className="project__media media">{content}</div>
   )
 }
 

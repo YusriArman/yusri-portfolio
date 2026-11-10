@@ -2,3 +2,9 @@ node_modules
 dist
 .DS_Store
 *.local
+
+# Original photographs stay on this computer; only the optimised copies in public/images are saved.
+photo-originals/**
+!photo-originals/**/
+!photo-originals/**/.gitkeep
+!photo-originals/README.md

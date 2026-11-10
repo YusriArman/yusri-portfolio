@@ -1,7 +1,9 @@
 import { profile } from '../content/profile'
+import { SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
 import './Hero.css'
 
 export function Hero() {
+  const planning = usePhotoPlanning()
   return (
     <section className="hero container" id="top" aria-labelledby="hero-name">
       <h1 className="hero__name" id="hero-name" aria-label={profile.fullName}>
@@ -33,6 +35,7 @@ export function Hero() {
 
         <figure className="hero__portrait media">
           <img src={profile.portrait.src} alt={profile.portrait.alt} width={759} height={1065} fetchPriority="high" />
+          {planning && <SlotBadge kind="portrait" />}
         </figure>
       </div>
     </section>

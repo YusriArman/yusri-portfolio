@@ -1,18 +1,29 @@
 # Content checklist
 
-Last updated 10 November 2026. Nothing on this list blocks publishing: the page simply leaves out anything that has not been supplied yet.
+Last updated 10 November 2026. Nothing on this list blocks publishing: the published page leaves out anything that has not been supplied.
 
-## Photos to add
+## Photographs
 
-Drop the files into these exact paths, then ask your coding assistant to "switch on the photos listed in CONTENT-CHECKLIST.md" (or follow the comments at the top of the content file named in each row). Export as JPEG, quality 80, and keep each file under about 500 KB.
+Run `npm run dev` and open http://localhost:5173 to see every slot below as a labelled placeholder at its real size. The labels match the first column. The placeholders appear in the local preview only and are never published. The button in the bottom-right corner hides them.
 
-| What | File path | Shape and minimum size | Then edit |
+**How to supply a photograph.** Drop the original file into the folder shown. Do not resize, crop or rename it. JPEG, PNG, HEIC (iPhone), WebP and TIFF all work. The folders are inside `photo-originals/`.
+
+| Slot label | Suggested subject | Preferred shape | Put the original in |
 | --- | --- | --- | --- |
-| Orientation Party 2026 featured photo | `public/images/events/orientation-party-2026/featured.jpg` | Landscape 16:9, 2400 x 1350 px | `src/content/events.ts`, set `featuredPhoto` |
-| Orientation Party 2026 gallery (3 to 6 photos) | `public/images/events/orientation-party-2026/gallery-01.jpg`, `gallery-02.jpg`, ... | 4:3, 1600 x 1200 px | `src/content/events.ts`, add entries to `gallery` |
-| Elysium screenshot (replaces the logo tile) | `public/images/projects/elysium/preview.jpg` | 4:3, 1600 x 1200 px | `src/content/projects.ts`, set `image.src` and remove `fit`/`background` |
-| MoneyTalks screenshot (replaces the text tile) | `public/images/projects/moneytalks/preview.jpg` | 4:3, 1600 x 1200 px | `src/content/projects.ts`, replace `image: null` |
-| Portrait (optional, a replacement for the CV photo) | `public/images/profile/yusri-arman.jpg` | Portrait 4:5, 1200 x 1500 px | Nothing, same filename |
+| **Portrait** | You from the chest up, facing the camera, on a plain or softly blurred background. Leave some space above your head. The CV photo is in place now. | 4:5 portrait, at least 1200 × 1500 px | `portrait/` |
+| **Project screenshot: Elysium ticketing platform** | The registration home screen or the collection-slot picker on a desktop screen, without the browser's address bar. The event logo is in place now. | 4:3 landscape, at least 1600 × 1200 px | `projects/elysium/` |
+| **Project screenshot: MoneyTalks** | The main dashboard or the voice-logging screen. | 4:3 landscape, at least 1600 × 1200 px | `projects/moneytalks/` |
+| **Presidency photograph** | You leading or addressing the Orientation Leaders, or a committee group photograph with you clearly visible. | 4:3 landscape, at least 1600 × 1200 px | `leadership/president/` |
+| **Featured event photograph** | A wide view of Orientation Party 2026 that shows scale: the crowd and stage together. Keep the main subject near the middle, because the edges may be trimmed. | 16:9 landscape, at least 2400 × 1350 px | `events/orientation-party-2026/featured/` |
+| **Gallery photograph 1 to 6** | A mix: the stage or performers, the crowd, your committee at work, ticket collection, decoration. Three to six photographs. They appear in filename order. | Any shape. Shown 4:3 in the strip and uncropped when enlarged. Long edge 2000 px or more | `events/orientation-party-2026/gallery/` |
+
+**What happens next.** Tell your coding assistant "I've added photos, please connect them", or do it yourself:
+
+1. Run `npm run photos`. It writes optimised copies into `public/images/`, removes camera metadata such as GPS location, and lists what it created. The originals are never changed.
+2. Reference each new file in the matching content file. The comment at the top of `src/content/projects.ts`, `leadership.ts` and `events.ts` shows the exact line to add, including a short description of the photo for screen readers.
+3. If a photograph is trimmed badly, add `position: 'center top'` (or `'left center'`, and so on) to that entry to keep the right part in view.
+
+Only use photographs you have the right to publish, and check that people who are clearly identifiable are comfortable appearing on your site.
 
 ## Facts to confirm or supply
 

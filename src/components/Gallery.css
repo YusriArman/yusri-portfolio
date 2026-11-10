@@ -54,7 +54,11 @@
 .gallery__media {
   aspect-ratio: 4 / 3;
   display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
   background: #1a2240;
+  cursor: zoom-in;
 }
 
 .gallery__caption {

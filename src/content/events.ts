@@ -1,14 +1,16 @@
 // Event highlights, in this order. This section is about leadership and delivery;
 // the software side of Elysium lives in projects.ts.
 //
-// Photos go in /public/images/events/<slug>/:
-//   featured.jpg      landscape, 16:9, at least 2400 x 1350 px
-//   gallery-01.jpg    4:3, at least 1600 x 1200 px (then gallery-02.jpg, and so on)
+// Photos: put the original files in photo-originals/events/<slug>/featured/ and
+// photo-originals/events/<slug>/gallery/, then run `npm run photos`. It writes
+// optimised copies to /public/images/events/<slug>/ as featured.jpg and gallery-01.jpg,
+// gallery-02.jpg, and so on.
 //
 // To show the featured photo, replace `featuredPhoto: null` with:
 //   featuredPhoto: { src: '/images/events/orientation-party-2026/featured.jpg', alt: 'Describe the photo', caption: 'Optional caption' },
 // To show gallery photos, add entries to `gallery` like:
-//   { src: '/images/events/orientation-party-2026/gallery-01.jpg', alt: 'Describe the photo' },
+//   { src: '/images/events/orientation-party-2026/gallery-01.jpg', alt: 'Describe the photo', caption: 'Optional caption' },
+// If a photo crops badly, add `position: 'center top'` (or similar) to keep the right part in view.
 
 import type { Event } from './types'
 

@@ -5,6 +5,7 @@ import { LeadershipSection } from './components/LeadershipSection'
 import { EventsSection } from './components/EventsSection'
 import { AboutSection } from './components/AboutSection'
 import { ContactSection, Footer } from './components/ContactSection'
+import { PhotoPlanningToggle } from './dev/photoPlanning'
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <ContactSection />
       </main>
       <Footer />
+      <PhotoPlanningToggle />
     </>
   )
 }

@@ -1,6 +1,8 @@
 import { leadership } from '../content/leadership'
 import { site } from '../content/site'
 import type { Role } from '../content/types'
+import { PhotoSlot, SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
+import { imageStyle } from './imageStyle'
 import './LeadershipSection.css'
 
 function RoleItem({ role }: { role: Role }) {
@@ -25,6 +27,7 @@ function RoleItem({ role }: { role: Role }) {
 }
 
 export function LeadershipSection() {
+  const planning = usePhotoPlanning()
   const featured = leadership.flatMap((org) => org.roles.filter((r) => r.featured).map((role) => ({ org, role })))[0]
   const groups = leadership
     .map((org) => ({ name: org.name, roles: org.roles.filter((r) => !r.featured) }))
@@ -41,17 +44,27 @@ export function LeadershipSection() {
         </div>
 
         {featured && (
-          <article className="surface featured-role">
-            <div className="featured-role__meta">
-              <p className="featured-role__org">{featured.org.name}</p>
-              <p className="featured-role__period">{featured.role.period}</p>
+          <article className={`surface featured-role${featured.role.photo || planning ? ' featured-role--photo' : ''}`}>
+            {featured.role.photo ? (
+              <figure className="media featured-role__photo">
+                <img src={featured.role.photo.src} alt={featured.role.photo.alt} loading="lazy" style={imageStyle(featured.role.photo)} />
+                {planning && <SlotBadge kind="leadership" />}
+              </figure>
+            ) : (
+              planning && <PhotoSlot kind="leadership" folder="leadership/president" className="featured-role__photo" />
+            )}
+            <div className="featured-role__body">
+              <div className="featured-role__meta">
+                <p className="featured-role__org">{featured.org.name}</p>
+                <p className="featured-role__period">{featured.role.period}</p>
+              </div>
+              <h3 className="featured-role__title">{featured.role.title}</h3>
+              <ul className="dash-list featured-role__contributions">
+                {featured.role.contributions.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </div>
-            <h3 className="featured-role__title">{featured.role.title}</h3>
-            <ul className="dash-list featured-role__contributions">
-              {featured.role.contributions.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
           </article>
         )}
 

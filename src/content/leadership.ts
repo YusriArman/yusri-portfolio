@@ -1,6 +1,10 @@
 // Leadership and community roles, grouped by organisation and shown in this order.
 // Set `featured: true` on exactly one role to show it first, large.
 // To add a role: copy a role object into the right organisation, or add a new organisation.
+//
+// The featured role can carry one photograph (4:3 landscape). After running `npm run photos`,
+// add this line to the featured role:
+//   photo: { src: '/images/leadership/president.jpg', alt: 'Describe the photo' },
 
 import type { Organisation } from './types'
 

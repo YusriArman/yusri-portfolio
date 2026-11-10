@@ -1,8 +1,33 @@
 .featured-role {
+  margin-bottom: var(--gutter);
+}
+
+/* Without a photograph: title on the left, contributions on the right. */
+.featured-role__body {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   gap: var(--space-5) var(--space-8);
-  margin-bottom: var(--gutter);
+}
+
+/* With a photograph: photo on the left, all the text stacked on the right. */
+.featured-role--photo {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-6) var(--space-8);
+  align-items: center;
+}
+
+.featured-role--photo .featured-role__body {
+  grid-template-columns: 1fr;
+}
+
+.featured-role__photo {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+}
+
+.featured-role__photo img {
+  aspect-ratio: 4 / 3;
 }
 
 .featured-role__meta {
@@ -88,7 +113,8 @@
 }
 
 @media (max-width: 860px) {
-  .featured-role,
+  .featured-role--photo,
+  .featured-role__body,
   .org-grid {
     grid-template-columns: 1fr;
   }

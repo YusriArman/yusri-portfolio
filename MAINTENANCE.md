@@ -15,15 +15,32 @@ This site is a single page built with React, Vite and TypeScript. All the words 
 
 Each content file starts with a comment explaining how to add an entry. Adding a project, role or event means copying an existing entry and changing its fields. No new components are needed. Order on the page follows the order in the file.
 
-## Replacing images and the résumé
+## Adding and replacing photographs
 
-Images live under `public/images/`:
+You supply original files; a script makes the web-ready copies.
 
-- `profile/yusri-arman.jpg` for the portrait (4:5, at least 1200 x 1500 px).
-- `projects/<slug>/preview.jpg` for each project (4:3, at least 1600 x 1200 px).
-- `events/<slug>/featured.jpg` (16:9, at least 2400 x 1350 px) and `events/<slug>/gallery-01.jpg`, `gallery-02.jpg`, ... (4:3, at least 1600 x 1200 px).
+1. Put the original photograph in the matching folder inside `photo-originals/`. No resizing, cropping or renaming is needed. `photo-originals/README.md` lists the folders, and `CONTENT-CHECKLIST.md` lists the suggested subject and shape for each slot.
+2. Run the optimiser:
 
-To replace an image, overwrite the file and keep the filename. To add a new one, save it in the right folder, then reference its path (starting with `/images/`) in the matching content file. Export JPEGs at about quality 80 and keep each under 500 KB.
+```bash
+npm run photos
+```
+
+3. Reference the new file in the matching content file. The comment at the top of each content file shows the exact line.
+
+The optimiser writes JPEG copies into `public/images/` (`profile/`, `projects/<slug>/`, `leadership/`, `events/<slug>/`), sized for each slot, with camera metadata removed. It never changes or deletes an original. To replace a photograph, swap the file in the `photo-originals/` folder and run it again; the published filename stays the same, so no content edit is needed.
+
+Originals are kept out of Git and are never published. Keep your own backup of them.
+
+For a new project or event, create a folder with the same slug, for example `photo-originals/projects/<slug>/` or `photo-originals/events/<slug>/featured/` and `.../gallery/`.
+
+The slot sizes are defined once in `photo-slots.config.json`.
+
+## Photo planning mode
+
+The local preview (`npm run dev`) shows a labelled placeholder wherever a photograph has not been supplied, at the size it will appear, and a small label on photographs already in place. The button in the bottom-right corner turns this off and on. None of it is included in the published site: the code lives in `src/dev/` and is switched off in the production build.
+
+## The résumé
 
 The résumé goes in `public/resume/`. Save a public-safe PDF (no phone number, no referee contact details) as `yusri-arman-resume.pdf`, then set `resume: '/resume/yusri-arman-resume.pdf'` in `src/content/profile.ts`. Setting it back to `null` hides the link.
 

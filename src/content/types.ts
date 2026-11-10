@@ -16,6 +16,8 @@ export type Image = {
   fit?: 'cover' | 'contain'
   /** Background colour behind a "contain" image. */
   background?: string
+  /** Which part of a cropped photo to keep in view, e.g. "center top" or "30% 50%". Default is the centre. */
+  position?: string
 }
 
 export type Project = {
@@ -46,6 +48,8 @@ export type Role = {
   contributions: string[]
   /** Set on exactly one role to show it first, large. */
   featured?: boolean
+  /** Optional photograph. Only shown on the featured role. */
+  photo?: Image
   /** Optional pointer to more detail elsewhere on the page, e.g. { label: 'See the event', href: '#events' }. */
   link?: Link
 }
