@@ -1,0 +1,113 @@
+.hero {
+  padding-top: var(--space-6);
+  padding-bottom: var(--section-gap);
+}
+
+/* The oversized name: two stacked lines, set wide and heavy. */
+.hero__name {
+  font-size: var(--text-display);
+  font-weight: 800;
+  font-stretch: 112%;
+  line-height: 0.82;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  margin-left: -0.04em; /* optical alignment of the first glyph */
+}
+
+.hero__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.04em;
+}
+
+.hero__line-inner {
+  display: block;
+  transform: translateY(110%);
+  animation: hero-rise var(--dur-reveal) var(--ease-out) forwards;
+  animation-delay: calc(var(--i) * 0.09s);
+}
+
+.hero__row {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--space-8) var(--gutter);
+  align-items: end;
+  margin-top: var(--space-8);
+  opacity: 0;
+  animation: hero-fade 0.7s ease-out 0.5s forwards;
+}
+
+.hero__intro {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 36ch;
+  padding-bottom: var(--space-4);
+}
+
+.hero__lede {
+  font-size: var(--text-xl);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.hero__looking {
+  color: var(--color-ink-soft);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.hero__portrait {
+  aspect-ratio: 4 / 5;
+  max-height: 72vh;
+  justify-self: end;
+  width: 100%;
+  max-width: 480px;
+  border-radius: var(--radius-xl);
+}
+
+@keyframes hero-rise {
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 860px) {
+  .hero__row {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .hero__portrait {
+    order: -1;
+    justify-self: start;
+    max-width: 360px;
+  }
+
+  .hero__intro {
+    max-width: 40ch;
+    padding-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__line-inner {
+    transform: none;
+    animation: none;
+  }
+
+  .hero__row {
+    opacity: 1;
+    animation: none;
+  }
+}

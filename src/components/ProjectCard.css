@@ -1,0 +1,52 @@
+.project {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+.project__media {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-xl);
+  color: inherit;
+}
+
+.project__media img {
+  aspect-ratio: 4 / 3;
+}
+
+.project__missing {
+  border-radius: var(--radius-xl);
+}
+
+.project__body {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 60ch;
+}
+
+.project__title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.project__context {
+  color: var(--color-ink-soft);
+  margin-top: calc(-1 * var(--space-2));
+}
+
+.project__summary {
+  font-size: var(--text-lg);
+  line-height: 1.4;
+}
+
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+}
+
+.project__note {
+  color: var(--color-ink-soft);
+}

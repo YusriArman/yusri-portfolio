@@ -1,0 +1,61 @@
+/* Design tokens: every colour, font, size and spacing value lives here.
+   Change a value once and the whole site follows. */
+
+:root {
+  /* Typeface: Archivo Variable (weight 100-900, width 62-125). */
+  --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+
+  /* Colours */
+  --color-page: #dce8fa;          /* pale blue page background */
+  --color-surface: #ffffff;       /* white rounded surfaces */
+  --color-tint: #eef4fd;          /* lighter blue for pills */
+  --color-line: #b9cbe8;          /* hairlines on light */
+  --color-ink: #0f1626;           /* main text */
+  --color-ink-soft: #4b566c;      /* secondary text */
+  --color-dark: #0b1020;          /* the dark event band */
+  --color-on-dark: #eef3fc;       /* text on the dark band */
+  --color-on-dark-soft: #a7b4cc;
+  --color-line-dark: #2a3454;
+  --color-accent: #1f4fe0;        /* links, buttons, focus ring */
+  --color-accent-ink: #ffffff;
+  --color-missing: #9a3412;       /* "Missing" development notes */
+  --color-missing-bg: #ffedd5;
+
+  /* Corners */
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  /* Layout */
+  --container: 1360px;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --section-gap: clamp(5rem, 10vw, 9rem);
+
+  /* Type scale */
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: clamp(1.25rem, 1.8vw, 1.625rem);
+  --text-2xl: clamp(1.75rem, 2.6vw, 2.5rem);
+  --text-3xl: clamp(2.5rem, 5vw, 4.5rem);
+  --text-display: clamp(5rem, 23.5vw, 23rem);
+  --leading-body: 1.55;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-reveal: 0.9s;
+  --dur-hover: 0.6s;
+}

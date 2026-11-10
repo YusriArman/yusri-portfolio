@@ -1,0 +1,24 @@
+/* Staggered two-column layout: wide, then narrow and lower, repeating. */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--space-9);
+}
+
+.projects-grid > .project:nth-child(odd) {
+  grid-column: 1 / span 7;
+}
+
+.projects-grid > .project:nth-child(even) {
+  grid-column: 8 / span 5;
+  margin-top: clamp(4rem, 12vw, 11rem);
+}
+
+@media (max-width: 860px) {
+  .projects-grid > .project:nth-child(odd),
+  .projects-grid > .project:nth-child(even) {
+    grid-column: 1 / -1;
+    margin-top: 0;
+  }
+}
