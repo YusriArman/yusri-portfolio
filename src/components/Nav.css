@@ -14,7 +14,8 @@
 
 .nav__list {
   display: flex;
-  gap: clamp(var(--space-4), 3vw, var(--space-6));
+  flex-wrap: wrap;
+  gap: var(--space-1) clamp(0.7rem, 3vw, var(--space-6));
 }
 
 .nav__link {
