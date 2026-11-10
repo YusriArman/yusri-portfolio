@@ -2,24 +2,19 @@ import { events } from '../content/events'
 import { site } from '../content/site'
 import type { Event } from '../content/types'
 import { Gallery } from './Gallery'
-import { MissingBlock, MissingList } from './Missing'
 import './EventsSection.css'
 
 function EventEntry({ event }: { event: Event }) {
   return (
     <article className="event" id={`event-${event.slug}`}>
-      <div className="event__feature">
-        {event.featuredPhoto ? (
-          <figure>
-            <div className="media event__photo">
-              <img src={event.featuredPhoto.src} alt={event.featuredPhoto.alt} loading="lazy" />
-            </div>
-            {event.featuredPhoto.caption && <figcaption className="event__caption">{event.featuredPhoto.caption}</figcaption>}
-          </figure>
-        ) : (
-          <MissingBlock what={`featured photograph of ${event.title}`} aspect="16 / 9" className="event__photo" />
-        )}
-      </div>
+      {event.featuredPhoto && (
+        <figure className="event__feature">
+          <div className="media event__photo">
+            <img src={event.featuredPhoto.src} alt={event.featuredPhoto.alt} loading="lazy" />
+          </div>
+          {event.featuredPhoto.caption && <figcaption className="event__caption">{event.featuredPhoto.caption}</figcaption>}
+        </figure>
+      )}
 
       <div className="event__grid">
         <div className="event__meta">
@@ -44,7 +39,11 @@ function EventEntry({ event }: { event: Event }) {
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <MissingList items={event.missing} />
+          {event.link && (
+            <a className="text-link event__link" href={event.link.href}>
+              {event.link.label}
+            </a>
+          )}
         </div>
       </div>
 

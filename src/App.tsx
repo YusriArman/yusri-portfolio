@@ -1,8 +1,10 @@
 import { Nav } from './components/Nav'
 import { Hero } from './components/Hero'
 import { ProjectsSection } from './components/ProjectsSection'
+import { LeadershipSection } from './components/LeadershipSection'
 import { EventsSection } from './components/EventsSection'
-import { profile } from './content/profile'
+import { AboutSection } from './components/AboutSection'
+import { ContactSection, Footer } from './components/ContactSection'
 
 export default function App() {
   return (
@@ -11,14 +13,12 @@ export default function App() {
       <main>
         <Hero />
         <ProjectsSection />
+        <LeadershipSection />
         <EventsSection />
+        <AboutSection />
+        <ContactSection />
       </main>
-      {/* Stage 1 stub so the "Get in touch" button has a target. Replaced by the full Contact section in Stage 2. */}
-      <footer className="container" id="contact" style={{ paddingBlock: 'var(--space-8)' }}>
-        <a className="text-link" href={`mailto:${profile.email}`}>
-          {profile.email}
-        </a>
-      </footer>
+      <Footer />
     </>
   )
 }

@@ -1,5 +1,4 @@
 import { profile } from '../content/profile'
-import { MissingInline } from './Missing'
 import './Hero.css'
 
 export function Hero() {
@@ -19,7 +18,8 @@ export function Hero() {
         <div className="hero__intro">
           <p className="hero__lede">{profile.intro}</p>
           <p className="hero__looking">
-            {profile.lookingFor} {profile.availability ?? <MissingInline what="availability window" />}
+            {profile.lookingFor}
+            {profile.availability && ` ${profile.availability}`}
           </p>
           <div className="hero__actions">
             <a className="button" href="#contact">

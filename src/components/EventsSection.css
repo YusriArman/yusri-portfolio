@@ -75,10 +75,10 @@
   margin-top: 0;
 }
 
-.section--dark .missing-list {
-  background: transparent;
-  color: #fdba74;
-  border-left-color: #fdba74;
+
+.event__link {
+  justify-self: start;
+  margin-top: var(--space-2);
 }
 
 @media (max-width: 860px) {

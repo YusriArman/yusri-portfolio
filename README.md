@@ -1,10 +1,10 @@
-# Yusri Arman — portfolio
+# Yusri Arman, portfolio
 
 Single-page portfolio built with React, Vite, TypeScript and plain CSS.
 
-- Content (text, links, projects, events): `src/content/`
+- Words, links, projects, roles and events: `src/content/`
 - Colours, fonts, spacing: `src/styles/tokens.css`
-- Images: `public/images/` (profile, projects/<slug>, events/<slug>)
+- Images: `public/images/` (`profile`, `projects/<slug>`, `events/<slug>`)
 - Résumé: `public/resume/`
 
 ```bash
@@ -13,4 +13,4 @@ npm run dev      # local preview at http://localhost:5173
 npm run build    # production build in dist/
 ```
 
-A fuller maintenance guide is added in Stage 2.
+See `MAINTENANCE.md` for how to edit and publish, and `CONTENT-CHECKLIST.md` for what is still missing.

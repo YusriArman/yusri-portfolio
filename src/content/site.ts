@@ -3,6 +3,7 @@
 export const site = {
   nav: [
     { label: 'Projects', href: '#projects' },
+    { label: 'Leadership', href: '#leadership' },
     { label: 'Events', href: '#events' },
     { label: 'About', href: '#about' },
     { label: 'Contact', href: '#contact' },
@@ -12,11 +13,20 @@ export const site = {
       title: 'Selected projects',
       intro: 'What I built, and which parts were mine.',
     },
+    leadership: {
+      title: 'Leadership and community',
+      intro: "Roles I've held in student bodies at Taylor's, from running the orientation leaders to securing their sponsors.",
+    },
     events: {
-      title: 'Events I have led',
-      intro: 'Student-led events where I ran the team, the sponsors or the night itself.',
+      title: 'Event highlights',
+      intro: 'Events I ran on the ground.',
+    },
+    about: {
+      title: 'About',
+    },
+    contact: {
+      title: 'Get in touch',
+      intro: "If you're hiring interns in Computer Science, Data Science or AI, I'd like to hear from you.",
     },
   },
-  /** Show orange "Missing" notes for content that is not filled in yet. Set to false before publishing. */
-  showMissing: true,
 }
