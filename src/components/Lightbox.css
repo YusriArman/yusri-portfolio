@@ -34,7 +34,7 @@ html:has(.lightbox[open]) {
 .lightbox__scrim {
   position: absolute;
   inset: 0;
-  background: rgba(11, 16, 32, 0.97);
+  background: var(--color-dark);
 }
 
 .lightbox__bar,

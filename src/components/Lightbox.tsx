@@ -91,6 +91,8 @@ export function Lightbox({ items, index, title, getThumb, onIndexChange, onClose
     if (closing.current) return
     closing.current = true
     const box = frame.current
+    // Focus goes back to the thumbnail of the photo that was showing.
+    const returnTo = index !== null ? getThumb(index) : null
     if (!reduced && box && index !== null) {
       animate(chrome(), { opacity: 0 }, { duration: 0.25 })
       const to = coverThumb(box, getThumb(index))
@@ -98,6 +100,7 @@ export function Lightbox({ items, index, title, getThumb, onIndexChange, onClose
       else await animate(box, { opacity: 0 }, { duration: 0.2 })
     }
     onClose()
+    requestAnimationFrame(() => returnTo?.focus({ preventScroll: true }))
   }
 
   useLayoutEffect(() => {
