@@ -2,25 +2,38 @@
    Change a value once and the whole site follows. */
 
 :root {
+  color-scheme: light;
   /* Typeface: Archivo Variable (weight 100-900, width 62-125). */
   --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
 
   /* Colours */
-  --color-page: #dce8fa;          /* pale blue page background */
-  --color-surface: #ffffff;       /* white rounded surfaces */
-  --color-surface-soft: #f5f8fe;  /* lighter background of the projects chapter */
-  --color-tint: #eef4fd;          /* lighter blue for pills */
-  --color-line: #b9cbe8;          /* hairlines on light */
-  --color-ink: #0f1626;           /* main text */
-  --color-ink-soft: #4b566c;      /* secondary text */
-  --color-dark: #0b1020;          /* the dark event band */
-  --color-on-dark: #eef3fc;       /* text on the dark band */
+  --color-page: #dce8fa;
+  /* pale blue page background */
+  --color-surface: #ffffff;
+  /* white rounded surfaces */
+  --color-surface-soft: #f5f8fe;
+  /* lighter background of the projects chapter */
+  --color-tint: #eef4fd;
+  /* lighter blue for pills */
+  --color-line: #b9cbe8;
+  /* hairlines on light */
+  --color-ink: #0f1626;
+  /* main text */
+  --color-ink-soft: #4b566c;
+  /* secondary text */
+  --color-dark: #0b1020;
+  /* the dark event band */
+  --color-on-dark: #eef3fc;
+  /* text on the dark band */
   --color-on-dark-soft: #a7b4cc;
   --color-line-dark: #2a3454;
-  --color-accent: #1f4fe0;        /* links, buttons, focus ring */
+  --color-accent: #1f4fe0;
+  /* links, buttons, focus ring */
   --color-accent-ink: #ffffff;
-  --color-on-accent-soft: #d6e0fb; /* secondary text on the blue leadership chapter */
-  --color-missing: #9a3412;       /* "Missing" development notes */
+  --color-on-accent-soft: #d6e0fb;
+  /* secondary text on the blue leadership chapter */
+  --color-missing: #9a3412;
+  /* "Missing" development notes */
   --color-missing-bg: #ffedd5;
 
   /* Corners */
@@ -28,7 +41,8 @@
   --radius-lg: 20px;
   --radius-md: 12px;
   --radius-pill: 999px;
-  --radius-chapter: clamp(1.5rem, 4vw, 3rem); /* rounded top of each chapter */
+  --radius-chapter: clamp(1.5rem, 4vw, 3rem);
+  /* rounded top of each chapter */
 
   /* Spacing scale */
   --space-1: 0.25rem;
@@ -61,4 +75,19 @@
   --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
   --dur-reveal: 0.9s;
   --dur-hover: 0.6s;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-page: #0e1526;
+  --color-surface: #182238;
+  --color-surface-soft: #121c30;
+  --color-tint: #25334d;
+
+  --color-ink: #eef3fc;
+  --color-ink-soft: #aab7d0;
+  --color-line: #344563;
+
+  --color-dark: #080d18;
 }

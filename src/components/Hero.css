@@ -1,4 +1,6 @@
 .hero {
+  overflow-anchor: none;
+
   padding-top: var(--space-2);
   padding-bottom: calc(var(--section-gap) * 0.8 + var(--radius-chapter));
 }
@@ -15,7 +17,8 @@
   line-height: 0.82;
   letter-spacing: -0.045em;
   text-transform: uppercase;
-  margin-left: -0.04em; /* optical alignment of the first glyph */
+  margin-left: -0.04em;
+  /* optical alignment of the first glyph */
 }
 
 /* Each line is a window the letters rise into. */
