@@ -20,7 +20,7 @@
 .event__caption {
   margin-top: var(--space-3);
   font-size: var(--text-sm);
-  color: var(--color-on-dark-soft);
+  color: var(--tone-soft);
 }
 
 .event__grid {
@@ -48,7 +48,7 @@
 }
 
 .event__period {
-  color: var(--color-on-dark-soft);
+  color: var(--tone-soft);
 }
 
 .event__summary {
@@ -67,7 +67,7 @@
 .event__subhead {
   font-size: var(--text-base);
   font-weight: 600;
-  color: var(--color-on-dark-soft);
+  color: var(--tone-soft);
   margin-top: var(--space-3);
 }
 

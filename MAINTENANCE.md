@@ -9,8 +9,9 @@ This site is a single page built with React, Vite and TypeScript. All the words 
 | Hero name, intro paragraph, "open to internships" line, About text, education, skills, email, GitHub and LinkedIn links, résumé link | `src/content/profile.ts` |
 | Projects (title, summary, what you did, technical detail, technologies, image, links) | `src/content/projects.ts` |
 | Leadership and community roles, grouped by organisation | `src/content/leadership.ts` |
+| Introduction and leadership photo galleries (order, descriptions, captions) | `src/content/galleries.ts` |
 | Event highlights (role, what you did, outcomes, featured photo, gallery) | `src/content/events.ts` |
-| Navigation labels and section headings | `src/content/site.ts` |
+| Navigation labels, chapter numbers, headings and the sentence under each heading | `src/content/site.ts` |
 | Browser-tab title and search description | `index.html` |
 
 Each content file starts with a comment explaining how to add an entry. Adding a project, role or event means copying an existing entry and changing its fields. No new components are needed. Order on the page follows the order in the file.
@@ -28,13 +29,43 @@ npm run photos
 
 3. Reference the new file in the matching content file. The comment at the top of each content file shows the exact line.
 
-The optimiser writes JPEG copies into `public/images/` (`profile/`, `projects/<slug>/`, `leadership/`, `events/<slug>/`), sized for each slot, with camera metadata removed. It never changes or deletes an original. To replace a photograph, swap the file in the `photo-originals/` folder and run it again; the published filename stays the same, so no content edit is needed.
+The optimiser writes JPEG copies into `public/images/`, sized for each slot, with camera metadata removed. It never changes or deletes an original. To replace a single photograph, swap the file in its `photo-originals/` folder and run it again; the published filename stays the same, so no content edit is needed.
 
 Originals are kept out of Git and are never published. Keep your own backup of them.
 
 For a new project or event, create a folder with the same slug, for example `photo-originals/projects/<slug>/` or `photo-originals/events/<slug>/featured/` and `.../gallery/`.
 
 The slot sizes are defined once in `photo-slots.config.json`.
+
+## Photo galleries
+
+One gallery component (`src/components/Gallery.tsx`) is used in three places: the compact strip in the introduction, the shared strip at the end of Leadership, and each event's strip. Change it once and all three follow.
+
+| Gallery | Originals folder | Listed in |
+| --- | --- | --- |
+| Introduction | `photo-originals/introduction-gallery/` | `introGallery` in `src/content/galleries.ts` |
+| Leadership | `photo-originals/leadership-gallery/` | `leadershipGallery` in `src/content/galleries.ts` |
+| An event | `photo-originals/events/<slug>/gallery/` | that event's `gallery` in `src/content/events.ts` |
+
+- **Add:** drop the original in the folder, run `npm run photos`, and paste the printed line into the list. Fill in `alt` and, if you want one, `caption`.
+- **Rearrange:** move the line. Photographs appear in listed order. Filenames do not affect order.
+- **Remove:** delete the line. Deleting the original as well and re-running the optimiser removes its web copy.
+- **Fix a crop:** add `position: 'center top'` or similar to the line. Thumbnails are cropped to 4:3; the enlarged view always shows the whole photograph.
+
+A gallery with no photographs listed is left off the published page entirely. Galleries never move on their own.
+
+## Chapters and motion
+
+The page is five chapters. Each chapter's number, story label, heading and connecting sentence are in `src/content/site.ts`. Chapter background colours are set in `src/styles/base.css` under "Chapters", using the colours in `src/styles/tokens.css`.
+
+Animation uses the Motion library (`motion` package) and lives in `src/motion/`:
+
+- `settings.ts` holds the shared easing and durations. Change them here.
+- `Reveal.tsx` is the curtain reveal on project images, the portrait and the presidency photograph.
+- `ScrollExpand.tsx` is the event photograph that widens as it scrolls into view.
+- `RollingLink.tsx` is the rolling text on navigation and contact links.
+
+The name entrance is in `src/components/Hero.tsx`, the heading entrance in `src/components/ChapterHeading.tsx`, and the enlarge-from-thumbnail viewer in `src/components/Lightbox.tsx`. Entrances play once. Visitors whose device asks for reduced motion get simple fades or no animation.
 
 ## Photo planning mode
 

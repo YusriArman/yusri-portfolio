@@ -19,15 +19,7 @@
 }
 
 .nav__link {
-  font-weight: 500;
-  text-decoration: none;
   padding-block: var(--space-1);
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.nav__link:hover {
-  border-bottom-color: currentColor;
 }
 
 @media (max-width: 480px) {

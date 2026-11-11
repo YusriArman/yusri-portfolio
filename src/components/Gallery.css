@@ -1,12 +1,23 @@
+/* One gallery, used in three chapters. Colours follow the chapter it sits in.
+   --per-view is how many photographs fit across; the fraction is the part of
+   the next photograph left showing so that browsing is discoverable. */
+
 .gallery {
+  --gap: var(--space-4);
+  --per-view: 3.4;
   display: grid;
   gap: var(--space-4);
+}
+
+.gallery--compact {
+  --per-view: 4.6;
 }
 
 .gallery__bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-4);
 }
 
 .gallery__label {
@@ -23,7 +34,7 @@
   place-items: center;
   width: 44px;
   height: 44px;
-  border: 1px solid var(--color-line-dark);
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
   border-radius: var(--radius-pill);
   background: transparent;
   cursor: pointer;
@@ -31,12 +42,12 @@
 }
 
 .gallery__button:hover {
-  background: #1a2240;
+  background: color-mix(in srgb, currentColor 12%, transparent);
 }
 
 .gallery__track {
   display: flex;
-  gap: var(--space-4);
+  gap: var(--gap);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding-bottom: var(--space-2);
@@ -45,10 +56,12 @@
 }
 
 .gallery__item {
-  flex: 0 0 min(78vw, 420px);
+  flex: 0 0 calc(100% / var(--per-view) - var(--gap));
+  min-width: 0;
   scroll-snap-align: start;
   display: grid;
   gap: var(--space-2);
+  align-content: start;
 }
 
 .gallery__media {
@@ -57,11 +70,32 @@
   width: 100%;
   padding: 0;
   border: 0;
-  background: #1a2240;
+  background: color-mix(in srgb, currentColor 12%, transparent);
   cursor: zoom-in;
 }
 
 .gallery__caption {
   font-size: var(--text-sm);
-  color: var(--color-on-dark-soft);
+  line-height: 1.4;
+  color: var(--tone-soft);
+}
+
+@media (max-width: 860px) {
+  .gallery {
+    --per-view: 2.3;
+  }
+
+  .gallery--compact {
+    --per-view: 3.3;
+  }
+}
+
+@media (max-width: 520px) {
+  .gallery {
+    --per-view: 1.25;
+  }
+
+  .gallery--compact {
+    --per-view: 1.7;
+  }
 }

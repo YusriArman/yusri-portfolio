@@ -1,16 +1,17 @@
-// Event highlights, in this order. This section is about leadership and delivery;
-// the software side of Elysium lives in projects.ts.
+// Event highlights, in this order. This section is about planning, coordination,
+// delivery and outcomes; the software side of Elysium lives in projects.ts.
 //
-// Photos: put the original files in photo-originals/events/<slug>/featured/ and
-// photo-originals/events/<slug>/gallery/, then run `npm run photos`. It writes
-// optimised copies to /public/images/events/<slug>/ as featured.jpg and gallery-01.jpg,
-// gallery-02.jpg, and so on.
+// PHOTOS: put the originals in
+//   photo-originals/events/<slug>/featured/   one wide photograph
+//   photo-originals/events/<slug>/gallery/    three to six more
+// then run `npm run photos`. It prints a ready-made line for each photograph.
 //
-// To show the featured photo, replace `featuredPhoto: null` with:
+// Featured photo: replace `featuredPhoto: null` with
 //   featuredPhoto: { src: '/images/events/orientation-party-2026/featured.jpg', alt: 'Describe the photo', caption: 'Optional caption' },
-// To show gallery photos, add entries to `gallery` like:
-//   { src: '/images/events/orientation-party-2026/gallery-01.jpg', alt: 'Describe the photo', caption: 'Optional caption' },
-// If a photo crops badly, add `position: 'center top'` (or similar) to keep the right part in view.
+// Gallery: paste the printed lines into `gallery` and fill in `alt` and `caption`.
+// Photographs appear in the order listed. To rearrange, move a line.
+// If a thumbnail crops badly, add `position: 'center top'` (or similar). The enlarged
+// view always shows the whole photograph.
 
 import type { Event } from './types'
 

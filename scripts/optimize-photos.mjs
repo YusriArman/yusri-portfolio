@@ -9,10 +9,16 @@
 //
 // Folder layout it understands:
 //   photo-originals/portrait/                     -> public/images/profile/yusri-arman.jpg
+//   photo-originals/introduction-gallery/         -> public/images/introduction-gallery/<name>.jpg
 //   photo-originals/projects/<slug>/              -> public/images/projects/<slug>/preview.jpg
 //   photo-originals/leadership/<name>/            -> public/images/leadership/<name>.jpg
+//   photo-originals/leadership-gallery/           -> public/images/leadership-gallery/<name>.jpg
 //   photo-originals/events/<slug>/featured/       -> public/images/events/<slug>/featured.jpg
-//   photo-originals/events/<slug>/gallery/        -> public/images/events/<slug>/gallery-01.jpg, -02, ...
+//   photo-originals/events/<slug>/gallery/        -> public/images/events/<slug>/gallery/<name>.jpg
+//
+// Gallery copies keep the original's name (tidied up), so adding, removing or
+// reordering photographs never changes the address of the others. The order on
+// the page is set in the content files, not by filenames.
 
 import { mkdir, mkdtemp, readdir, rm, stat } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
@@ -31,10 +37,18 @@ const JPEG_QUALITY = 82
 
 let tempDir = null
 const results = []
+const galleries = []
 const warnings = []
 
 const rel = (file) => path.relative(root, file)
 const byName = (a, b) => a.localeCompare(b, undefined, { numeric: true })
+const webPath = (file) => '/' + path.relative(path.join(root, 'public'), file).split(path.sep).join('/')
+const tidyName = (file) =>
+  path
+    .basename(file, path.extname(file))
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'photo'
 
 async function listImages(dir) {
   if (!existsSync(dir)) return []
@@ -86,7 +100,7 @@ async function optimise(source, output, slot, fit) {
   results.push({
     slot: slot.label,
     from: rel(source),
-    to: '/' + path.relative(path.join(root, 'public'), output).split(path.sep).join('/'),
+    to: webPath(output),
     size: `${info.width} × ${info.height} px, ${Math.round(info.size / 1024)} KB`,
   })
 }
@@ -100,20 +114,21 @@ async function single(folder, output, slot) {
   await optimise(files[0], output, slot, 'outside')
 }
 
-async function gallery(folder, outputDir, slot) {
+async function gallery(folder, outputDir, slot, listName) {
   const files = await listImages(folder)
   if (files.length === 0) return
-  // Clear earlier gallery copies so removed or reordered originals do not leave strays.
-  if (existsSync(outputDir)) {
-    for (const name of await readdir(outputDir)) {
-      if (/^gallery-\d+\.jpg$/.test(name)) await rm(path.join(outputDir, name))
-    }
-  }
-  let n = 1
+  const written = new Set()
   for (const file of files) {
-    await optimise(file, path.join(outputDir, `gallery-${String(n).padStart(2, '0')}.jpg`), slot, 'inside')
-    n += 1
+    let name = tidyName(file)
+    for (let n = 2; written.has(`${name}.jpg`); n += 1) name = `${tidyName(file)}-${n}`
+    written.add(`${name}.jpg`)
+    await optimise(file, path.join(outputDir, `${name}.jpg`), { ...slot, label: slot.label }, 'inside')
   }
+  // Remove copies whose original is no longer in the folder.
+  for (const name of await readdir(outputDir)) {
+    if (name.endsWith('.jpg') && !written.has(name)) await rm(path.join(outputDir, name))
+  }
+  galleries.push({ listName, lines: [...written].map((name) => webPath(path.join(outputDir, name))) })
 }
 
 async function main() {
@@ -123,6 +138,19 @@ async function main() {
   }
 
   await single(path.join(originalsDir, 'portrait'), path.join(imagesDir, 'profile', 'yusri-arman.jpg'), slots.portrait)
+
+  await gallery(
+    path.join(originalsDir, 'introduction-gallery'),
+    path.join(imagesDir, 'introduction-gallery'),
+    slots.introGallery,
+    '`introGallery` in src/content/galleries.ts',
+  )
+  await gallery(
+    path.join(originalsDir, 'leadership-gallery'),
+    path.join(imagesDir, 'leadership-gallery'),
+    slots.leadershipGallery,
+    '`leadershipGallery` in src/content/galleries.ts',
+  )
 
   for (const slug of await listFolders(path.join(originalsDir, 'projects'))) {
     await single(path.join(originalsDir, 'projects', slug), path.join(imagesDir, 'projects', slug, 'preview.jpg'), slots.project)
@@ -135,7 +163,12 @@ async function main() {
   for (const slug of await listFolders(path.join(originalsDir, 'events'))) {
     const eventDir = path.join(originalsDir, 'events', slug)
     await single(path.join(eventDir, 'featured'), path.join(imagesDir, 'events', slug, 'featured.jpg'), slots.eventFeatured)
-    await gallery(path.join(eventDir, 'gallery'), path.join(imagesDir, 'events', slug), slots.eventGallery)
+    await gallery(
+      path.join(eventDir, 'gallery'),
+      path.join(imagesDir, 'events', slug, 'gallery'),
+      slots.eventGallery,
+      `\`gallery\` of the "${slug}" event in src/content/events.ts`,
+    )
   }
 
   if (tempDir) await rm(tempDir, { recursive: true, force: true })
@@ -155,7 +188,14 @@ async function main() {
     console.log('\nWorth checking:')
     for (const w of warnings) console.log(`  - ${w}`)
   }
-  console.log('\nOriginals were not changed. Next: reference the "to" paths in src/content/ (see CONTENT-CHECKLIST.md).')
+  if (galleries.length > 0) {
+    console.log('\nGallery lines. Copy the ones that are new into the list named, then fill in alt and caption:')
+    for (const g of galleries) {
+      console.log(`\n  ${g.listName}`)
+      for (const src of g.lines) console.log(`    { src: '${src}', alt: '', caption: '' },`)
+    }
+  }
+  console.log('\nOriginals were not changed. See CONTENT-CHECKLIST.md for where each photograph is used.')
 }
 
 main().catch((error) => {

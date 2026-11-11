@@ -1,5 +1,6 @@
 import { profile } from '../content/profile'
 import { site } from '../content/site'
+import { RollingLink } from '../motion/RollingLink'
 import './Nav.css'
 
 export function Nav() {
@@ -12,9 +13,7 @@ export function Nav() {
         <ul className="nav__list">
           {site.nav.map((item) => (
             <li key={item.href}>
-              <a className="nav__link" href={item.href}>
-                {item.label}
-              </a>
+              <RollingLink className="nav__link" href={item.href} label={item.label} />
             </li>
           ))}
         </ul>

@@ -1,5 +1,5 @@
 // Shapes for the content files. You rarely need to edit this file;
-// edit profile.ts, projects.ts, leadership.ts, events.ts and site.ts instead.
+// edit profile.ts, projects.ts, leadership.ts, events.ts, galleries.ts and site.ts instead.
 
 export type Link = {
   label: string
@@ -26,12 +26,14 @@ export type Project = {
   title: string
   /** One line: where and when it was built, with whom. */
   context: string
-  /** What it does. One or two sentences. */
+  /** What it is. One sentence. */
   summary: string
+  /** The problem it had to solve. One or two sentences. Leave out if you have nothing verified to say. */
+  problem?: string
   /** What you personally did. One or two short items. */
   contribution: string[]
-  /** Why it mattered. One sentence. Leave out if you have nothing verified to say. */
-  impact?: string
+  /** What happened as a result. One sentence, real facts only. Leave out if unknown. */
+  outcome?: string
   /** Secondary technical detail, shown inside an expandable "More technical detail" block. */
   details?: string[]
   tech: string[]
@@ -76,6 +78,6 @@ export type Event = {
   link?: Link
   /** Large landscape photo, or null to leave it out. */
   featuredPhoto: Image | null
-  /** Zero or more photos. The strip is hidden when empty. */
+  /** Zero or more photos, shown in this order. The strip is hidden when empty. */
   gallery: Image[]
 }

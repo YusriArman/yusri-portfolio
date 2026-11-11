@@ -4,6 +4,9 @@
 // Screenshots: put the original file in photo-originals/projects/<slug>/ and run
 // `npm run photos`. It writes an optimised copy to /public/images/projects/<slug>/preview.jpg.
 // Then set:  image: { src: '/images/projects/<slug>/preview.jpg', alt: 'Describe the screenshot' },
+//
+// Each card shows: summary, the problem (optional), what you did, the outcome (optional).
+// Leave `problem` or `outcome` out when you have nothing verified to say.
 
 import type { Project } from './types'
 
@@ -12,14 +15,16 @@ export const projects: Project[] = [
     slug: 'elysium',
     title: 'Elysium ticketing platform',
     context: "Taylor's University Orientation Party 2026, built with a student team.",
-    summary:
-      'Ticket registration and collection-slot booking for incoming freshmen. Students are verified against a university whitelist, book a physical ticket pickup slot, and join a waitlist once the 1,500 main passes are taken.',
+    summary: 'Ticket registration and collection-slot booking for incoming freshmen.',
+    problem:
+      'Registration opens to a rush of freshmen for 1,500 main passes. The platform had to hold that cap, admit only students on the university whitelist, and stop duplicate tickets.',
     contribution: [
       'Built front-end features in React and TypeScript, including live capacity tracking and a real-time announcement feed on Supabase.',
       'Deployed and maintained the site on Vercel through the registration period.',
     ],
-    impact: "It carried the registration rush for the university's largest orientation event, serving over 140 GB of traffic.",
+    outcome: "It carried registration for the university's largest orientation event and served over 140 GB of traffic.",
     details: [
+      'Flow: a student is verified against the whitelist, books a physical ticket pickup slot, and joins a waitlist once the main passes are taken.',
       'Front end in React, TypeScript, Vite and Tailwind CSS. I also built the merchandise, prize and sponsor showcase pages.',
       'Backend by the team on Supabase (PostgreSQL) with row-level security and RPC functions. Slot bookings use row-level locks so a slot cannot be overbooked.',
       'Collection-day flow: each physical ticket ID is bound to a verified student ID, and gate check-in flags any ticket scanned twice.',

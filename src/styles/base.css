@@ -52,7 +52,7 @@ button {
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-accent);
+  outline: 3px solid var(--tone-focus, var(--color-accent));
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -62,13 +62,58 @@ button {
   margin-inline: auto;
 }
 
+/* Enlarged-then-settling images must never widen the page. */
+main {
+  overflow-x: clip;
+}
+
+/* ---------- Chapters ----------
+   Each chapter is a .section with a tone. Tones set a few variables that the
+   shared pieces below (intro text, links, pills, rules, focus ring) pick up. */
+
 .section {
-  padding-block: var(--section-gap);
+  position: relative;
+  padding-top: var(--section-gap);
+  padding-bottom: calc(var(--section-gap) + var(--radius-chapter));
+  --tone-soft: var(--color-ink-soft);
+  --tone-rule: var(--color-line);
+  --tone-pill: var(--color-tint);
+  --tone-focus: var(--color-accent);
+}
+
+/* A chapter slides over the one before it, with rounded top corners. */
+.chapter {
+  margin-top: calc(-1 * var(--radius-chapter));
+  border-radius: var(--radius-chapter) var(--radius-chapter) 0 0;
+}
+
+.section--light {
+  background: var(--color-surface-soft);
+  --tone-pill: var(--color-page);
+}
+
+.section--accent {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+  --tone-soft: var(--color-on-accent-soft);
+  --tone-rule: rgba(255, 255, 255, 0.35);
+  --tone-focus: #fff;
 }
 
 .section--dark {
   background: var(--color-dark);
   color: var(--color-on-dark);
+  --tone-soft: var(--color-on-dark-soft);
+  --tone-rule: var(--color-line-dark);
+  --tone-pill: #1a2240;
+  --tone-focus: #8aa7ff;
+}
+
+.section--closing {
+  background: var(--color-page);
+  padding-top: calc(var(--section-gap) * 1.2);
+  padding-bottom: var(--section-gap);
+  --tone-pill: var(--color-surface);
 }
 
 .section__head {
@@ -86,15 +131,53 @@ button {
 
 .section__intro {
   font-size: var(--text-lg);
-  color: var(--color-ink-soft);
-  max-width: 44ch;
+  color: var(--tone-soft);
+  max-width: 46ch;
 }
 
-.section--dark .section__intro {
-  color: var(--color-on-dark-soft);
+/* Small chapter number and story label above a heading. */
+.chapter-mark {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75em;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--tone-soft);
 }
 
-/* Buttons and text links */
+.chapter-mark__number {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--chapter-number, currentColor);
+}
+
+/* A clipping window used for text that rises into place. */
+.mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+.mask__inner {
+  display: block;
+}
+
+/* White rounded surface. Resets the tone so it reads the same on any chapter. */
+.surface {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border-radius: var(--radius-xl);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  --tone-soft: var(--color-ink-soft);
+  --tone-rule: var(--color-line);
+  --tone-pill: var(--color-tint);
+  --tone-focus: var(--color-accent);
+}
+
+/* ---------- Buttons and links ---------- */
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -116,7 +199,7 @@ button {
   text-decoration: underline;
   text-underline-offset: 0.2em;
   text-decoration-thickness: 2px;
-  text-decoration-color: var(--color-line);
+  text-decoration-color: var(--tone-rule);
   transition: text-decoration-color 0.2s ease;
 }
 
@@ -124,12 +207,51 @@ button {
   text-decoration-color: currentColor;
 }
 
-.section--dark .text-link {
-  text-decoration-color: var(--color-line-dark);
+/* Rolling-text link: the label rolls up and a copy rolls in from below. */
+.roll {
+  display: inline-flex;
+  font-weight: 500;
+  text-decoration: none;
 }
 
-/* Rounded media frames with a quiet hover zoom */
+.roll__window {
+  display: inline-flex;
+  overflow: hidden;
+  line-height: 1.5;
+}
+
+.roll__cell {
+  position: relative;
+  display: inline-block;
+}
+
+.roll__char {
+  display: inline-block;
+  white-space: pre;
+}
+
+.roll__char--next {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.roll--underlined {
+  font-weight: 600;
+  padding-bottom: 2px;
+  border-bottom: 2px solid var(--tone-rule);
+  transition: border-color 0.2s ease;
+}
+
+.roll--underlined:hover {
+  border-bottom-color: currentColor;
+}
+
+/* ---------- Media ---------- */
+
+/* Rounded frames with a quiet hover zoom */
 .media {
+  display: block;
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-lg);
@@ -150,7 +272,22 @@ button.media:focus-visible img {
   transform: scale(1.03);
 }
 
-/* Small rounded pills, e.g. technologies */
+/* Wrappers used by the image reveal and the expanding event photograph. */
+.reveal,
+.reveal__frame,
+.reveal__inner,
+.scroll-expand,
+.scroll-expand__inner {
+  display: block;
+}
+
+.reveal__inner,
+.scroll-expand__inner {
+  transform-origin: center;
+}
+
+/* ---------- Small pieces ---------- */
+
 .pills {
   display: flex;
   flex-wrap: wrap;
@@ -160,13 +297,9 @@ button.media:focus-visible img {
 .pill {
   padding: 0.3rem 0.8rem;
   border-radius: var(--radius-pill);
-  background: var(--color-tint);
+  background: var(--tone-pill);
   font-size: var(--text-sm);
   font-weight: 500;
-}
-
-.section--dark .pill {
-  background: #1a2240;
 }
 
 /* Bulleted lists with a plain dash */
@@ -191,23 +324,9 @@ button.media:focus-visible img {
   opacity: 0.5;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
 /* Expandable secondary detail (native <details>) */
 .disclosure {
-  border-top: 1px solid var(--color-line);
+  border-top: 1px solid var(--tone-rule);
   padding-top: var(--space-3);
 }
 
@@ -241,12 +360,19 @@ button.media:focus-visible img {
 
 .disclosure__body {
   margin-top: var(--space-3);
-  color: var(--color-ink-soft);
+  color: var(--tone-soft);
 }
 
-/* White rounded surface on the pale page */
-.surface {
-  background: var(--color-surface);
-  border-radius: var(--radius-xl);
-  padding: clamp(1.5rem, 4vw, 3rem);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

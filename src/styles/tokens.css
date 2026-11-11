@@ -8,6 +8,7 @@
   /* Colours */
   --color-page: #dce8fa;          /* pale blue page background */
   --color-surface: #ffffff;       /* white rounded surfaces */
+  --color-surface-soft: #f5f8fe;  /* lighter background of the projects chapter */
   --color-tint: #eef4fd;          /* lighter blue for pills */
   --color-line: #b9cbe8;          /* hairlines on light */
   --color-ink: #0f1626;           /* main text */
@@ -18,6 +19,7 @@
   --color-line-dark: #2a3454;
   --color-accent: #1f4fe0;        /* links, buttons, focus ring */
   --color-accent-ink: #ffffff;
+  --color-on-accent-soft: #d6e0fb; /* secondary text on the blue leadership chapter */
   --color-missing: #9a3412;       /* "Missing" development notes */
   --color-missing-bg: #ffedd5;
 
@@ -26,6 +28,7 @@
   --radius-lg: 20px;
   --radius-md: 12px;
   --radius-pill: 999px;
+  --radius-chapter: clamp(1.5rem, 4vw, 3rem); /* rounded top of each chapter */
 
   /* Spacing scale */
   --space-1: 0.25rem;

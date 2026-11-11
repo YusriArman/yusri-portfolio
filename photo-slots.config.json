@@ -7,6 +7,14 @@
     "width": 1200,
     "height": 1500
   },
+  "introGallery": {
+    "label": "Introduction photograph",
+    "shape": "Any shape, shown 4:3 in the strip",
+    "min": "long edge 2000 px or more",
+    "ratio": "4 / 3",
+    "width": 2000,
+    "height": 2000
+  },
   "project": {
     "label": "Project screenshot",
     "shape": "4:3 landscape",
@@ -23,6 +31,14 @@
     "width": 1600,
     "height": 1200
   },
+  "leadershipGallery": {
+    "label": "Leadership photograph",
+    "shape": "Any shape, shown 4:3 in the strip",
+    "min": "long edge 2000 px or more",
+    "ratio": "4 / 3",
+    "width": 2000,
+    "height": 2000
+  },
   "eventFeatured": {
     "label": "Featured event photograph",
     "shape": "16:9 landscape",
@@ -32,7 +48,7 @@
     "height": 1350
   },
   "eventGallery": {
-    "label": "Gallery photograph",
+    "label": "Event gallery photograph",
     "shape": "Any shape, shown 4:3 in the strip",
     "min": "long edge 2000 px or more",
     "ratio": "4 / 3",

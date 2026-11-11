@@ -2,6 +2,8 @@ import { events } from '../content/events'
 import { site } from '../content/site'
 import type { Event } from '../content/types'
 import { PhotoSlot, SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
+import { ScrollExpand } from '../motion/ScrollExpand'
+import { ChapterHeading } from './ChapterHeading'
 import { Gallery } from './Gallery'
 import { imageStyle } from './imageStyle'
 import './EventsSection.css'
@@ -12,14 +14,20 @@ function EventEntry({ event }: { event: Event }) {
     <article className="event" id={`event-${event.slug}`}>
       {event.featuredPhoto ? (
         <figure className="event__feature">
-          <div className="media event__photo">
-            <img src={event.featuredPhoto.src} alt={event.featuredPhoto.alt} loading="lazy" style={imageStyle(event.featuredPhoto)} />
-            {planning && <SlotBadge kind="eventFeatured" />}
-          </div>
+          <ScrollExpand>
+            <div className="media event__photo">
+              <img src={event.featuredPhoto.src} alt={event.featuredPhoto.alt} loading="lazy" style={imageStyle(event.featuredPhoto)} />
+              {planning && <SlotBadge kind="eventFeatured" />}
+            </div>
+          </ScrollExpand>
           {event.featuredPhoto.caption && <figcaption className="event__caption">{event.featuredPhoto.caption}</figcaption>}
         </figure>
       ) : (
-        planning && <PhotoSlot kind="eventFeatured" folder={`events/${event.slug}/featured`} className="event__photo" />
+        planning && (
+          <ScrollExpand>
+            <PhotoSlot kind="eventFeatured" folder={`events/${event.slug}/featured`} className="event__photo" />
+          </ScrollExpand>
+        )
       )}
 
       <div className="event__grid">
@@ -53,21 +61,22 @@ function EventEntry({ event }: { event: Event }) {
         </div>
       </div>
 
-      <Gallery items={event.gallery} title={event.title} slug={event.slug} />
+      <Gallery
+        items={event.gallery}
+        label={site.chapters.events.galleryLabel}
+        title={event.title}
+        slot={{ kind: 'eventGallery', folder: `events/${event.slug}/gallery`, count: 4 }}
+      />
     </article>
   )
 }
 
 export function EventsSection() {
+  const chapter = site.chapters.events
   return (
-    <section className="section section--dark" id="events" aria-labelledby="events-title">
+    <section className="section section--dark chapter" id="events" aria-labelledby="events-title">
       <div className="container">
-        <div className="section__head">
-          <h2 className="section__title" id="events-title">
-            {site.sections.events.title}
-          </h2>
-          <p className="section__intro">{site.sections.events.intro}</p>
-        </div>
+        <ChapterHeading number={chapter.number} label={chapter.label} title={chapter.title} intro={chapter.intro} id="events-title" />
 
         <div className="events-list">
           {events.map((event) => (

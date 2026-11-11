@@ -1,6 +1,6 @@
 # Yusri Arman, portfolio
 
-Single-page portfolio built with React, Vite, TypeScript and plain CSS.
+Single-page portfolio built with React, Vite, TypeScript, plain CSS and Motion.
 
 - Words, links, projects, roles and events: `src/content/`
 - Colours, fonts, spacing: `src/styles/tokens.css`

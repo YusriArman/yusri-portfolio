@@ -1,18 +1,15 @@
 import { projects } from '../content/projects'
 import { site } from '../content/site'
+import { ChapterHeading } from './ChapterHeading'
 import { ProjectCard } from './ProjectCard'
 import './ProjectsSection.css'
 
 export function ProjectsSection() {
+  const chapter = site.chapters.projects
   return (
-    <section className="section" id="projects" aria-labelledby="projects-title">
+    <section className="section section--light chapter" id="projects" aria-labelledby="projects-title">
       <div className="container">
-        <div className="section__head">
-          <h2 className="section__title" id="projects-title">
-            {site.sections.projects.title}
-          </h2>
-          <p className="section__intro">{site.sections.projects.intro}</p>
-        </div>
+        <ChapterHeading number={chapter.number} label={chapter.label} title={chapter.title} intro={chapter.intro} id="projects-title" />
 
         <div className="projects-grid">
           {projects.map((project) => (

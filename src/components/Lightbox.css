@@ -11,15 +11,18 @@ html:has(.lightbox[open]) {
   margin: 0;
   padding: 0;
   border: 0;
-  background: rgba(11, 16, 32, 0.96);
+  background: transparent;
   color: var(--color-on-dark);
+  overflow: hidden;
+  --tone-focus: #8aa7ff;
 }
 
 .lightbox::backdrop {
-  background: rgba(11, 16, 32, 0.96);
+  background: transparent;
 }
 
 .lightbox__inner {
+  position: relative;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
   gap: var(--space-4);
@@ -27,8 +30,16 @@ html:has(.lightbox[open]) {
   padding: var(--space-4) var(--gutter);
 }
 
+/* The dark layer behind the photo. It fades separately from the photo itself. */
+.lightbox__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 16, 32, 0.97);
+}
+
 .lightbox__bar,
 .lightbox__controls {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -62,23 +73,30 @@ html:has(.lightbox[open]) {
   background: #1a2240;
 }
 
-.lightbox :focus-visible {
-  outline-color: #8aa7ff;
-}
-
 .lightbox__figure {
+  position: relative;
   display: grid;
-  grid-template-rows: minmax(0, 1fr);
   place-items: center;
   min-height: 0;
   cursor: zoom-out;
 }
 
+/* The frame hugs the photo. It is what grows from and shrinks to the thumbnail. */
+.lightbox__frame {
+  display: grid;
+  transform-origin: center;
+  will-change: transform, clip-path;
+}
+
 .lightbox__img {
-  max-width: 100%;
-  max-height: 100%;
-  border-radius: var(--radius-md);
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: calc(100vw - 2 * var(--gutter));
+  max-height: calc(100dvh - 11rem);
+  border-radius: 12px;
   cursor: default;
+  user-select: none;
 }
 
 .lightbox__caption {

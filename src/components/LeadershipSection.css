@@ -112,6 +112,10 @@
   color: var(--color-ink);
 }
 
+.leadership__gallery {
+  margin-top: var(--space-9);
+}
+
 @media (max-width: 860px) {
   .featured-role--photo,
   .featured-role__body,

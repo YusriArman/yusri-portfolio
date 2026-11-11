@@ -1,4 +1,4 @@
-// Navigation and section headings.
+// Navigation, chapter numbers, headings and the short sentences that connect the chapters.
 
 export const site = {
   nav: [
@@ -8,25 +8,38 @@ export const site = {
     { label: 'About', href: '#about' },
     { label: 'Contact', href: '#contact' },
   ],
-  sections: {
+  chapters: {
+    intro: {
+      number: '01',
+      label: 'Meet me',
+      galleryLabel: 'A few photographs',
+    },
     projects: {
+      number: '02',
+      label: 'What I build',
       title: 'Selected projects',
       intro: 'What I built, and which parts were mine.',
     },
     leadership: {
+      number: '03',
+      label: 'How I lead',
       title: 'Leadership and community',
-      intro: "Roles I've held in student bodies at Taylor's, from running the orientation leaders to securing their sponsors.",
+      intro: "Alongside the degree, I've led and served in student organisations at Taylor's since 2023.",
+      galleryLabel: 'Across these organisations',
     },
     events: {
+      number: '04',
+      label: 'What I deliver',
       title: 'Event highlights',
-      intro: 'Events I ran on the ground.',
+      intro: "One of those roles was project-managing Taylor's University's largest orientation event. This is what delivering it involved.",
+      galleryLabel: 'Photos',
     },
-    about: {
-      title: 'About',
-    },
-    contact: {
-      title: 'Get in touch',
-      intro: "If you're hiring interns in Computer Science, Data Science or AI, I'd like to hear from you.",
+    closing: {
+      number: '05',
+      label: "Let's talk",
+      aboutTitle: 'About',
+      contactTitle: 'Get in touch',
+      contactIntro: "If you're hiring interns in Computer Science, Data Science or AI, I'd like to hear from you.",
     },
   },
 }

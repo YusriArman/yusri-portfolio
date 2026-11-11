@@ -1,7 +1,11 @@
+import { leadershipGallery } from '../content/galleries'
 import { leadership } from '../content/leadership'
 import { site } from '../content/site'
 import type { Role } from '../content/types'
 import { PhotoSlot, SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
+import { Reveal } from '../motion/Reveal'
+import { ChapterHeading } from './ChapterHeading'
+import { Gallery } from './Gallery'
 import { imageStyle } from './imageStyle'
 import './LeadershipSection.css'
 
@@ -28,30 +32,32 @@ function RoleItem({ role }: { role: Role }) {
 
 export function LeadershipSection() {
   const planning = usePhotoPlanning()
+  const chapter = site.chapters.leadership
   const featured = leadership.flatMap((org) => org.roles.filter((r) => r.featured).map((role) => ({ org, role })))[0]
   const groups = leadership
     .map((org) => ({ name: org.name, roles: org.roles.filter((r) => !r.featured) }))
     .filter((org) => org.roles.length > 0)
 
   return (
-    <section className="section" id="leadership" aria-labelledby="leadership-title">
+    <section className="section section--accent chapter" id="leadership" aria-labelledby="leadership-title">
       <div className="container">
-        <div className="section__head">
-          <h2 className="section__title" id="leadership-title">
-            {site.sections.leadership.title}
-          </h2>
-          <p className="section__intro">{site.sections.leadership.intro}</p>
-        </div>
+        <ChapterHeading number={chapter.number} label={chapter.label} title={chapter.title} intro={chapter.intro} id="leadership-title" />
 
         {featured && (
           <article className={`surface featured-role${featured.role.photo || planning ? ' featured-role--photo' : ''}`}>
             {featured.role.photo ? (
-              <figure className="media featured-role__photo">
-                <img src={featured.role.photo.src} alt={featured.role.photo.alt} loading="lazy" style={imageStyle(featured.role.photo)} />
-                {planning && <SlotBadge kind="leadership" />}
-              </figure>
+              <Reveal radius={20}>
+                <figure className="media featured-role__photo">
+                  <img src={featured.role.photo.src} alt={featured.role.photo.alt} loading="lazy" style={imageStyle(featured.role.photo)} />
+                  {planning && <SlotBadge kind="leadership" />}
+                </figure>
+              </Reveal>
             ) : (
-              planning && <PhotoSlot kind="leadership" folder="leadership/president" className="featured-role__photo" />
+              planning && (
+                <Reveal radius={20}>
+                  <PhotoSlot kind="leadership" folder="leadership/president" className="featured-role__photo" />
+                </Reveal>
+              )
             )}
             <div className="featured-role__body">
               <div className="featured-role__meta">
@@ -82,6 +88,17 @@ export function LeadershipSection() {
             </section>
           ))}
         </div>
+
+        {(leadershipGallery.length > 0 || planning) && (
+          <div className="leadership__gallery">
+            <Gallery
+              items={leadershipGallery}
+              label={chapter.galleryLabel}
+              title="leadership and community roles"
+              slot={{ kind: 'leadershipGallery', folder: 'leadership-gallery', count: 5 }}
+            />
+          </div>
+        )}
       </div>
     </section>
   )

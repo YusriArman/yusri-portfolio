@@ -17,6 +17,8 @@ export const profile = {
   portrait: {
     src: '/images/profile/yusri-arman.jpg',
     alt: 'Portrait of Yusri Arman in a dark suit against a grey background',
+    /** Optional: which part to keep in view if the portrait is cropped, e.g. 'center top'. */
+    position: undefined as string | undefined,
   },
 
   /** About section. */

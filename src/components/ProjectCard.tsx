@@ -1,5 +1,6 @@
 import type { Project } from '../content/types'
 import { PhotoSlot, SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
+import { Reveal } from '../motion/Reveal'
 import { imageStyle } from './imageStyle'
 import './ProjectCard.css'
 
@@ -37,12 +38,21 @@ function Media({ project }: { project: Project }) {
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="project" id={`project-${project.slug}`}>
-      <Media project={project} />
+      <Reveal>
+        <Media project={project} />
+      </Reveal>
 
       <div className="project__body">
         <h3 className="project__title">{project.title}</h3>
         <p className="project__context">{project.context}</p>
         <p className="project__summary">{project.summary}</p>
+
+        {project.problem && (
+          <div className="project__block">
+            <h4 className="project__subhead">The problem</h4>
+            <p>{project.problem}</p>
+          </div>
+        )}
 
         <div className="project__block">
           <h4 className="project__subhead">What I did</h4>
@@ -53,10 +63,10 @@ export function ProjectCard({ project }: { project: Project }) {
           </ul>
         </div>
 
-        {project.impact && (
+        {project.outcome && (
           <div className="project__block">
-            <h4 className="project__subhead">Why it mattered</h4>
-            <p>{project.impact}</p>
+            <h4 className="project__subhead">Outcome</h4>
+            <p>{project.outcome}</p>
           </div>
         )}
 
