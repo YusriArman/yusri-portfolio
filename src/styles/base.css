@@ -20,6 +20,10 @@ body {
   color: var(--color-ink);
   background: var(--color-page);
   -webkit-font-smoothing: antialiased;
+  /* Tone defaults for anything outside a chapter (the opening, the footer). */
+  --tone-soft: var(--color-ink-soft);
+  --tone-rule: var(--color-line);
+  --tone-pill: var(--color-tint);
 }
 
 h1,
@@ -89,12 +93,14 @@ main {
 }
 
 .section--light {
-  background: var(--color-surface-soft);
+  --chapter-bg: var(--color-surface-soft);
+  background: var(--chapter-bg);
   --tone-pill: var(--color-page);
 }
 
 .section--accent {
-  background: var(--color-accent);
+  --chapter-bg: var(--color-accent);
+  background: var(--chapter-bg);
   color: var(--color-accent-ink);
   --tone-soft: var(--color-on-accent-soft);
   --tone-rule: rgba(255, 255, 255, 0.35);
@@ -102,7 +108,8 @@ main {
 }
 
 .section--dark {
-  background: var(--color-dark);
+  --chapter-bg: var(--color-dark);
+  background: var(--chapter-bg);
   color: var(--color-on-dark);
   --tone-soft: var(--color-on-dark-soft);
   --tone-rule: var(--color-line-dark);
@@ -110,11 +117,40 @@ main {
   --tone-focus: #8aa7ff;
 }
 
-.section--closing {
+/* A chapter that sits directly on the page colour and follows on from the opening. */
+.section--plain {
   background: var(--color-page);
-  padding-top: calc(var(--section-gap) * 1.2);
-  padding-bottom: var(--section-gap);
+  padding-top: 0;
   --tone-pill: var(--color-surface);
+}
+
+/* A chapter whose colour sits on a separate layer, so the layer can open without moving the text.
+   The chapter itself takes the colour of the chapter above it, so the gap beside the
+   opening panel never shows a seam. */
+.chapter--panel {
+  --chapter-behind: var(--color-page);
+  background: var(--chapter-behind);
+  isolation: isolate;
+}
+
+.section--light + .chapter--panel {
+  --chapter-behind: var(--color-surface-soft);
+}
+
+.section--accent + .chapter--panel {
+  --chapter-behind: var(--color-accent);
+}
+
+.section--dark + .chapter--panel {
+  --chapter-behind: var(--color-dark);
+}
+
+.chapter__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--chapter-bg);
 }
 
 .section__head {

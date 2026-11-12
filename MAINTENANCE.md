@@ -6,7 +6,7 @@ This site is a single page built with React, Vite and TypeScript. All the words 
 
 | To change | Edit this file |
 | --- | --- |
-| Hero name, intro paragraph, "open to internships" line, About text, education, skills, email, GitHub and LinkedIn links, résumé link | `src/content/profile.ts` |
+| Hero name, opening description, the invitation line under it, About text, education, skills, email, GitHub and LinkedIn links, résumé link | `src/content/profile.ts` |
 | Projects (title, summary, what you did, technical detail, technologies, image, links) | `src/content/projects.ts` |
 | Leadership and community roles, grouped by organisation | `src/content/leadership.ts` |
 | Introduction and leadership photo galleries (order, descriptions, captions) | `src/content/galleries.ts` |
@@ -39,7 +39,7 @@ The slot sizes are defined once in `photo-slots.config.json`.
 
 ## Photo galleries
 
-One gallery component (`src/components/Gallery.tsx`) is used in three places: the compact strip in the introduction, the shared strip at the end of Leadership, and each event's strip. Change it once and all three follow.
+One gallery component (`src/components/Gallery.tsx`) is used in three places: the compact strip at the end of About, the shared strip at the end of Leadership, and each event's strip. Change it once and all three follow.
 
 | Gallery | Originals folder | Listed in |
 | --- | --- | --- |
@@ -56,7 +56,7 @@ A gallery with no photographs listed is left off the published page entirely. Ga
 
 ## Chapters and motion
 
-The page is five chapters. Each chapter's number, story label, heading and connecting sentence are in `src/content/site.ts`. Chapter background colours are set in `src/styles/base.css` under "Chapters", using the colours in `src/styles/tokens.css`.
+The page is five chapters: the opening (name and contact details, anchor `#contact`), About (`#about`), Projects, Leadership and Events. A small footer repeats the email and links back to the top. Each chapter's number, story label, heading and connecting sentence are in `src/content/site.ts`. Chapter background colours are set in `src/styles/base.css` under "Chapters", using the colours in `src/styles/tokens.css`.
 
 Animation uses the Motion library (`motion` package) and lives in `src/motion/`:
 
@@ -64,6 +64,8 @@ Animation uses the Motion library (`motion` package) and lives in `src/motion/`:
 - `Reveal.tsx` is the curtain reveal on project images, the portrait and the presidency photograph.
 - `ScrollExpand.tsx` is the event photograph that widens as it scrolls into view.
 - `RollingLink.tsx` is the rolling text on navigation and contact links.
+
+`ChapterBackdrop.tsx` is the coloured panel behind Projects, Leadership and Events that widens as the chapter scrolls into view.
 
 The name entrance is in `src/components/Hero.tsx`, the heading entrance in `src/components/ChapterHeading.tsx`, and the enlarge-from-thumbnail viewer in `src/components/Lightbox.tsx`. Entrances play once. Visitors whose device asks for reduced motion get simple fades or no animation.
 

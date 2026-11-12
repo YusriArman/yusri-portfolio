@@ -21,13 +21,13 @@
 
 import type { Image } from './types'
 
-/** Chapter 01. You participating, building, speaking or working with others. Aim for 4 to 6. */
+/** Chapter 02, About. You participating, building, speaking or working with others. Aim for 4 to 6. */
 export const introGallery: Image[] = [
   // { src: '/images/introduction-gallery/your-file.jpg', alt: 'Describe the photo', caption: 'Optional caption' },
 ]
 
 /**
- * Chapter 03. Photographs across your clubs and organisations. Aim for 4 to 8.
+ * Chapter 04. Photographs across your clubs and organisations. Aim for 4 to 8.
  * Write each caption as: organisation, occasion, then your role or contribution.
  * Example caption: "Taylor's Orientation Leaders, March 2025 intake. I led the welcome briefing as president."
  */

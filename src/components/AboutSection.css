@@ -1,0 +1,90 @@
+/* Portrait on the left; the introduction, education and skills on the right. */
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-7) var(--space-8);
+  align-items: start;
+}
+
+.about__portrait-wrap {
+  width: 100%;
+  max-width: 400px;
+}
+
+.about__portrait {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-xl);
+}
+
+.about__body {
+  display: grid;
+  gap: var(--space-7);
+}
+
+.about__text {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 44ch;
+}
+
+.about__para {
+  font-size: var(--text-xl);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.about__facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6) var(--space-7);
+  align-items: start;
+}
+
+.about__group {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.about__subhead {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-ink-soft);
+}
+
+.about__education {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.about__edu-title {
+  font-weight: 700;
+}
+
+.about__edu-meta {
+  color: var(--color-ink-soft);
+}
+
+/* The compact photo strip that closes the chapter. */
+.about__gallery {
+  margin-top: var(--space-9);
+}
+
+@media (max-width: 860px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .about__portrait-wrap {
+    max-width: 340px;
+  }
+
+  .about__gallery {
+    margin-top: var(--space-8);
+  }
+}
+
+@media (max-width: 520px) {
+  .about__facts {
+    grid-template-columns: 1fr;
+  }
+}

@@ -12,11 +12,11 @@ Run `npm run dev` and open http://localhost:5173 to see every slot below as a la
 
 | Slot label | Chapter | Suggested subject | Preferred shape | Put the original in |
 | --- | --- | --- | --- | --- |
-| **Portrait** | 01 Introduction | You from the chest up, facing the camera, on a plain or softly blurred background. Leave some space above your head. The CV photo is in place now. | 4:5 portrait, at least 1200 × 1500 px | `portrait/` |
-| **Project screenshot: Elysium ticketing platform** | 02 Projects | The registration home screen or the collection-slot picker on a desktop screen, without the browser's address bar. The event logo is in place now. | 4:3 landscape, at least 1600 × 1200 px | `projects/elysium/` |
-| **Project screenshot: MoneyTalks** | 02 Projects | The main dashboard or the voice-logging screen. | 4:3 landscape, at least 1600 × 1200 px | `projects/moneytalks/` |
-| **Presidency photograph** | 03 Leadership | You leading or addressing the Orientation Leaders, or a committee group photograph with you clearly visible. | 4:3 landscape, at least 1600 × 1200 px | `leadership/president/` |
-| **Featured event photograph** | 04 Events | A wide view of Orientation Party 2026 that shows scale: the crowd and stage together. Keep the main subject near the middle, because the edges may be trimmed. | 16:9 landscape, at least 2400 × 1350 px | `events/orientation-party-2026/featured/` |
+| **Portrait** | 02 About | You from the chest up, facing the camera, on a plain or softly blurred background. Leave some space above your head. The CV photo is in place now. | 4:5 portrait, at least 1200 × 1500 px | `portrait/` |
+| **Project screenshot: Elysium ticketing platform** | 03 Projects | The registration home screen or the collection-slot picker on a desktop screen, without the browser's address bar. The event logo is in place now. | 4:3 landscape, at least 1600 × 1200 px | `projects/elysium/` |
+| **Project screenshot: MoneyTalks** | 03 Projects | The main dashboard or the voice-logging screen. | 4:3 landscape, at least 1600 × 1200 px | `projects/moneytalks/` |
+| **Presidency photograph** | 04 Leadership | You leading or addressing the Orientation Leaders, or a committee group photograph with you clearly visible. | 4:3 landscape, at least 1600 × 1200 px | `leadership/president/` |
+| **Featured event photograph** | 05 Events | A wide view of Orientation Party 2026 that shows scale: the crowd and stage together. Keep the main subject near the middle, because the edges may be trimmed. | 16:9 landscape, at least 2400 × 1350 px | `events/orientation-party-2026/featured/` |
 
 ### Galleries
 
@@ -24,9 +24,9 @@ All three use the same gallery: a strip you browse sideways, where selecting a p
 
 | Slot label | Chapter | Suggested subjects | How many | Put the originals in |
 | --- | --- | --- | --- | --- |
-| **Introduction photograph 1, 2, ...** | 01 Introduction, the compact strip under your portrait | You taking part, building, speaking, or working with others. A personal introduction, so you should be easy to spot in each. | 4 to 6 | `introduction-gallery/` |
-| **Leadership photograph 1, 2, ...** | 03 Leadership, after all the roles | Moments across your clubs and organisations: Orientation Leaders, Agents of Tech, Student Council, Student Life Centre. Caption each as organisation, occasion, then your role. | 4 to 8 | `leadership-gallery/` |
-| **Event gallery photograph 1, 2, ...** | 04 Events, under Orientation Party 2026 | The stage or performers, the crowd, your committee at work, ticket collection, decoration. | 3 to 6 | `events/orientation-party-2026/gallery/` |
+| **Introduction photograph 1, 2, ...** | 02 About, the compact strip that closes the chapter | You taking part, building, speaking, or working with others. A personal introduction, so you should be easy to spot in each. | 4 to 6 | `introduction-gallery/` |
+| **Leadership photograph 1, 2, ...** | 04 Leadership, after all the roles | Moments across your clubs and organisations: Orientation Leaders, Agents of Tech, Student Council, Student Life Centre. Caption each as organisation, occasion, then your role. | 4 to 8 | `leadership-gallery/` |
+| **Event gallery photograph 1, 2, ...** | 05 Events, under Orientation Party 2026 | The stage or performers, the crowd, your committee at work, ticket collection, decoration. | 3 to 6 | `events/orientation-party-2026/gallery/` |
 
 Choose a small set for each and avoid using the same photograph in two galleries.
 

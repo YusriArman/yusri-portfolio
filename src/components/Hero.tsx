@@ -1,26 +1,26 @@
 import { motion, useReducedMotion } from 'motion/react'
-import { introGallery } from '../content/galleries'
 import { profile } from '../content/profile'
 import { site } from '../content/site'
-import { SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
-import { Reveal } from '../motion/Reveal'
+import { RollingLink } from '../motion/RollingLink'
 import { DURATION, EASE_OUT } from '../motion/settings'
-import { Gallery } from './Gallery'
 import './Hero.css'
 
-// The name enters one letter at a time; the introduction and portrait follow.
+// The name enters one letter at a time; the description and contact details follow.
 const name = { hidden: {}, show: { transition: { staggerChildren: 0.035, delayChildren: 0.05 } } }
 const letter = { hidden: { y: '108%' }, show: { y: '0%', transition: { duration: 0.8, ease: EASE_OUT } } }
 
+/**
+ * Chapter 01, the opening: who you are, then how to reach you straight away.
+ * Its anchor is #contact, so every "contact" link on the page lands here.
+ */
 export function Hero() {
-  const planning = usePhotoPlanning()
-  // With reduced motion everything in the introduction is simply there from the start.
+  // With reduced motion everything in the opening is simply there from the start.
   const reduced = useReducedMotion()
-  const chapter = site.chapters.intro
-  const showGallery = introGallery.length > 0 || planning
+  const chapter = site.chapters.opening
+  const mailto = `mailto:${profile.email}`
 
   return (
-    <section className="hero" id="top" aria-labelledby="hero-name">
+    <section className="hero" id="contact" aria-labelledby="hero-name">
       <div className="container">
         <motion.p className="chapter-mark hero__mark" initial={reduced ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: DURATION.base }}>
           <span className="chapter-mark__number">{chapter.number}</span>
@@ -47,51 +47,44 @@ export function Hero() {
             transition={{ duration: DURATION.base, ease: EASE_OUT, delay: 0.5 }}
           >
             <p className="hero__lede">{profile.intro}</p>
-            <p className="hero__looking">
-              {profile.lookingFor}
+            <p className="hero__invite">
+              {profile.invitation}
               {profile.availability && ` ${profile.availability}`}
             </p>
             <div className="hero__actions">
-              <a className="button" href="#contact">
+              <a className="button" href={mailto}>
                 Get in touch
               </a>
-              <a className="text-link" href="#projects">
-                See projects
+              <a className="text-link" href="#about">
+                Learn about me <span aria-hidden="true">↓</span>
               </a>
             </div>
           </motion.div>
 
-          <Reveal className="hero__portrait-wrap" immediate delay={reduced ? 0 : 0.45}>
-            <figure className="hero__portrait media">
-              <img
-                src={profile.portrait.src}
-                alt={profile.portrait.alt}
-                width={759}
-                height={1065}
-                fetchPriority="high"
-                style={profile.portrait.position ? { objectPosition: profile.portrait.position } : undefined}
-              />
-              {planning && <SlotBadge kind="portrait" />}
-            </figure>
-          </Reveal>
-        </div>
-
-        {showGallery && (
           <motion.div
-            className="hero__gallery"
+            className="hero__contact"
             initial={reduced ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: DURATION.base, ease: EASE_OUT, delay: 0.8 }}
+            transition={{ duration: DURATION.base, ease: EASE_OUT, delay: 0.6 }}
           >
-            <Gallery
-              items={introGallery}
-              label={chapter.galleryLabel}
-              title="the introduction"
-              size="compact"
-              slot={{ kind: 'introGallery', folder: 'introduction-gallery', count: 5 }}
-            />
+            <p className="hero__contact-label">Email</p>
+            <a className="hero__email" href={mailto}>
+              {profile.email}
+            </a>
+            <ul className="hero__links">
+              {profile.links.map((link) => (
+                <li key={link.href}>
+                  <RollingLink className="roll--underlined" href={link.href} label={link.label} external />
+                </li>
+              ))}
+              {profile.resume && (
+                <li>
+                  <RollingLink className="roll--underlined" href={profile.resume} label="Résumé (PDF)" external />
+                </li>
+              )}
+            </ul>
           </motion.div>
-        )}
+        </div>
       </div>
     </section>
   )

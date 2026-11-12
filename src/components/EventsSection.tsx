@@ -2,6 +2,7 @@ import { events } from '../content/events'
 import { site } from '../content/site'
 import type { Event } from '../content/types'
 import { PhotoSlot, SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
+import { ChapterBackdrop } from '../motion/ChapterBackdrop'
 import { ScrollExpand } from '../motion/ScrollExpand'
 import { ChapterHeading } from './ChapterHeading'
 import { Gallery } from './Gallery'
@@ -74,7 +75,8 @@ function EventEntry({ event }: { event: Event }) {
 export function EventsSection() {
   const chapter = site.chapters.events
   return (
-    <section className="section section--dark chapter" id="events" aria-labelledby="events-title">
+    <section className="section section--dark chapter chapter--panel" id="events" aria-labelledby="events-title">
+      <ChapterBackdrop />
       <div className="container">
         <ChapterHeading number={chapter.number} label={chapter.label} title={chapter.title} intro={chapter.intro} id="events-title" />
 

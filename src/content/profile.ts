@@ -6,12 +6,13 @@ export const profile = {
   heroName: ['Yusri', 'Arman'],
   shortName: 'Yusri Arman',
 
-  /** Hero paragraph. */
+  /** Opening paragraph: one short description of what you do. */
   intro:
-    "Final-year Computer Science student at Taylor's University, specialising in AI and Data Science. I build and deploy web and AI-powered tools, and I've led the student teams and events that used them.",
+    "Final-year Computer Science student at Taylor's University. I build and deploy web and AI-powered tools, and I've led the student teams and events that used them.",
 
-  lookingFor: 'Open to internships in Computer Science, Data Science and AI.',
-  /** e.g. "Available from June 2027." Set to null to leave it out. */
+  /** The line that invites people to write, shown above the opening's buttons. */
+  invitation: "If you're hiring interns in Computer Science, Data Science or AI, I'd like to hear from you.",
+  /** e.g. "Available from June 2027." Shown after the invitation. Set to null to leave it out. */
   availability: null as string | null,
 
   portrait: {
@@ -21,9 +22,9 @@ export const profile = {
     position: undefined as string | undefined,
   },
 
-  /** About section. */
+  /** About section. Keep it short, and leave degree titles and dates to `education` below. */
   about: [
-    "I'm completing a Bachelor of Computer Science at Taylor's University after the American Degree Transfer Program there. Alongside the degree I've held leadership roles in student bodies, which is where most of my experience in sponsorship negotiation, project management and stakeholder engagement comes from.",
+    "I specialise in AI and Data Science, and came to the degree through the American Degree Transfer Program at Taylor's. Alongside it I've held leadership roles in student bodies, which is where most of my experience in sponsorship negotiation, project management and stakeholder engagement comes from.",
   ],
   education: [
     { title: 'Bachelor of Computer Science', place: "Taylor's University", period: '2024 to 2027', note: 'CGPA 3.57' },

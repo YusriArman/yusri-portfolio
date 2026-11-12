@@ -3,6 +3,7 @@ import { leadership } from '../content/leadership'
 import { site } from '../content/site'
 import type { Role } from '../content/types'
 import { PhotoSlot, SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
+import { ChapterBackdrop } from '../motion/ChapterBackdrop'
 import { Reveal } from '../motion/Reveal'
 import { ChapterHeading } from './ChapterHeading'
 import { Gallery } from './Gallery'
@@ -39,7 +40,8 @@ export function LeadershipSection() {
     .filter((org) => org.roles.length > 0)
 
   return (
-    <section className="section section--accent chapter" id="leadership" aria-labelledby="leadership-title">
+    <section className="section section--accent chapter chapter--panel" id="leadership" aria-labelledby="leadership-title">
+      <ChapterBackdrop />
       <div className="container">
         <ChapterHeading number={chapter.number} label={chapter.label} title={chapter.title} intro={chapter.intro} id="leadership-title" />
 

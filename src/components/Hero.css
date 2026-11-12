@@ -2,7 +2,7 @@
   overflow-anchor: none;
 
   padding-top: var(--space-2);
-  padding-bottom: calc(var(--section-gap) * 0.8 + var(--radius-chapter));
+  padding-bottom: var(--section-gap);
 }
 
 .hero__mark {
@@ -35,7 +35,7 @@
 .hero__row {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: var(--space-6) var(--gutter);
+  gap: var(--space-7) var(--gutter);
   align-items: start;
   margin-top: var(--space-7);
 }
@@ -53,8 +53,8 @@
   letter-spacing: -0.01em;
 }
 
-.hero__looking {
-  color: var(--color-ink-soft);
+.hero__invite {
+  color: var(--tone-soft);
 }
 
 .hero__actions {
@@ -64,20 +64,41 @@
   gap: var(--space-5);
 }
 
-.hero__portrait-wrap {
-  justify-self: end;
-  width: 100%;
-  max-width: 400px;
+/* How to reach me: the address itself, then the professional links. */
+.hero__contact {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+  padding-top: var(--space-3);
 }
 
-.hero__portrait {
-  aspect-ratio: 4 / 5;
-  border-radius: var(--radius-xl);
+.hero__contact-label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--tone-soft);
 }
 
-/* The compact photo strip that closes the introduction. */
-.hero__gallery {
-  margin-top: var(--space-9);
+.hero__email {
+  font-size: clamp(1.25rem, 2.2vw, 2rem);
+  font-weight: 800;
+  font-stretch: 105%;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.hero__email:hover {
+  border-bottom-color: currentColor;
+}
+
+.hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  margin-top: var(--space-3);
 }
 
 @media (max-width: 860px) {
@@ -85,18 +106,12 @@
     grid-template-columns: 1fr;
   }
 
-  .hero__portrait-wrap {
-    order: -1;
-    justify-self: start;
-    max-width: 340px;
-  }
-
   .hero__intro {
     max-width: 40ch;
     padding-top: 0;
   }
 
-  .hero__gallery {
-    margin-top: var(--space-8);
+  .hero__contact {
+    padding-top: 0;
   }
 }
