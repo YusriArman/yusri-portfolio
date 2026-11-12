@@ -1,3 +1,4 @@
+import { usePhotos } from '../photos/PhotoLibrary'
 import { introGallery } from '../content/galleries'
 import { profile } from '../content/profile'
 import { site } from '../content/site'
@@ -9,9 +10,11 @@ import './AboutSection.css'
 
 /** Chapter 02: portrait, a short personal introduction, education and skills, then a few photographs. */
 export function AboutSection() {
+  const photos = usePhotos('introduction-gallery', introGallery)
+  const portrait = usePhotos('portrait', [profile.portrait])[0]
   const planning = usePhotoPlanning()
   const chapter = site.chapters.about
-  const showGallery = introGallery.length > 0 || planning
+  const showGallery = photos.length > 0 || planning
 
   return (
     <section className="section section--plain" id="about" aria-labelledby="about-title">
@@ -19,19 +22,19 @@ export function AboutSection() {
         <ChapterHeading number={chapter.number} label={chapter.label} title={chapter.title} id="about-title" />
 
         <div className="about">
-          <Reveal className="about__portrait-wrap">
+          {portrait && <Reveal className="about__portrait-wrap">
             <figure className="about__portrait media">
               <img
-                src={profile.portrait.src}
-                alt={profile.portrait.alt}
-                width={759}
-                height={1065}
+                src={portrait.src}
+                alt={portrait.alt}
+                width={profile.portrait.width}
+                height={profile.portrait.height}
                 loading="lazy"
-                style={profile.portrait.position ? { objectPosition: profile.portrait.position } : undefined}
+                style={portrait.position ? { objectPosition: portrait.position } : undefined}
               />
               {planning && <SlotBadge kind="portrait" />}
             </figure>
-          </Reveal>
+          </Reveal>}
 
           <div className="about__body">
             <div className="about__text">
@@ -77,7 +80,7 @@ export function AboutSection() {
         {showGallery && (
           <div className="about__gallery">
             <Gallery
-              items={introGallery}
+              items={photos}
               label={chapter.galleryLabel}
               title="the introduction"
               size="compact"

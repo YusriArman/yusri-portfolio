@@ -1,3 +1,4 @@
+import { usePhotos } from '../photos/PhotoLibrary'
 import { events } from '../content/events'
 import { site } from '../content/site'
 import type { Event } from '../content/types'
@@ -10,18 +11,20 @@ import { imageStyle } from './imageStyle'
 import './EventsSection.css'
 
 function EventEntry({ event }: { event: Event }) {
+  const photos = usePhotos(`events/${event.slug}/gallery`, event.gallery)
+  const featuredPhoto = usePhotos(`events/${event.slug}/featured`, event.featuredPhoto ? [event.featuredPhoto] : [])[0]
   const planning = usePhotoPlanning()
   return (
     <article className="event" id={`event-${event.slug}`}>
-      {event.featuredPhoto ? (
+      {featuredPhoto ? (
         <figure className="event__feature">
           <ScrollExpand>
             <div className="media event__photo">
-              <img src={event.featuredPhoto.src} alt={event.featuredPhoto.alt} loading="lazy" style={imageStyle(event.featuredPhoto)} />
+              <img src={featuredPhoto.src} alt={featuredPhoto.alt} loading="lazy" style={imageStyle(featuredPhoto)} />
               {planning && <SlotBadge kind="eventFeatured" />}
             </div>
           </ScrollExpand>
-          {event.featuredPhoto.caption && <figcaption className="event__caption">{event.featuredPhoto.caption}</figcaption>}
+          {featuredPhoto.caption && <figcaption className="event__caption">{featuredPhoto.caption}</figcaption>}
         </figure>
       ) : (
         planning && (
@@ -63,7 +66,7 @@ function EventEntry({ event }: { event: Event }) {
       </div>
 
       <Gallery
-        items={event.gallery}
+        items={photos}
         label={site.chapters.events.galleryLabel}
         title={event.title}
         slot={{ kind: 'eventGallery', folder: `events/${event.slug}/gallery`, count: 4 }}

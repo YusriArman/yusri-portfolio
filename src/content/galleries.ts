@@ -7,12 +7,14 @@
 //      photo-originals/leadership-gallery/     -> leadershipGallery below
 // 2. Run `npm run photos`. It prints a ready-made line for each photograph.
 // 3. Paste those lines into the list below and fill in `alt` and `caption`.
+//    For Supabase images, upload the optimised copy to the public portfolio bucket
+//    and use its public URL as `src`. Keep captions and ordering here.
 //
 // ORDER: photographs appear in the order they are listed here. To rearrange, move a line.
 // To remove one from the page, delete its line.
 //
 // Each entry:
-//   src       path to the optimised copy (printed by `npm run photos`)
+//   src       local path or public URL to the optimised copy
 //   alt       a plain description for people who cannot see the photo
 //   caption   optional text shown under the photo and in the enlarged view
 //   position  optional; which part to keep in view when the thumbnail is cropped,

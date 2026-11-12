@@ -1,3 +1,4 @@
+import { PhotoLibrary } from './photos/PhotoLibrary'
 import { MotionConfig } from 'motion/react'
 import { AboutSection } from './components/AboutSection'
 import { EventsSection } from './components/EventsSection'
@@ -14,16 +15,18 @@ export default function App() {
   return (
     // reducedMotion="user": people who ask their device for less motion get fades instead of movement.
     <MotionConfig reducedMotion="user">
-      <Nav />
-      <main>
-        <Hero />
-        <AboutSection />
-        <ProjectsSection />
-        <LeadershipSection />
-        <EventsSection />
-      </main>
-      <Footer />
-      <PhotoPlanningToggle />
+      <PhotoLibrary>
+        <Nav />
+        <main>
+          <Hero />
+          <AboutSection />
+          <ProjectsSection />
+          <LeadershipSection />
+          <EventsSection />
+        </main>
+        <Footer />
+        <PhotoPlanningToggle />
+      </PhotoLibrary>
     </MotionConfig>
   )
 }
