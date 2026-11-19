@@ -1,3 +1,4 @@
+import { usePhotos } from '../photos/PhotoLibrary'
 import { leadershipGallery } from '../content/galleries'
 import { leadership } from '../content/leadership'
 import { site } from '../content/site'
@@ -35,6 +36,8 @@ export function LeadershipSection() {
   const planning = usePhotoPlanning()
   const chapter = site.chapters.leadership
   const featured = leadership.flatMap((org) => org.roles.filter((r) => r.featured).map((role) => ({ org, role })))[0]
+  const photos = usePhotos('leadership-gallery', leadershipGallery)
+  const featuredPhoto = usePhotos('leadership/president', featured?.role.photo ? [featured.role.photo] : [])[0]
   const groups = leadership
     .map((org) => ({ name: org.name, roles: org.roles.filter((r) => !r.featured) }))
     .filter((org) => org.roles.length > 0)
@@ -46,11 +49,11 @@ export function LeadershipSection() {
         <ChapterHeading number={chapter.number} label={chapter.label} title={chapter.title} intro={chapter.intro} id="leadership-title" />
 
         {featured && (
-          <article className={`surface featured-role${featured.role.photo || planning ? ' featured-role--photo' : ''}`}>
-            {featured.role.photo ? (
+          <article className={`surface featured-role${featuredPhoto || planning ? ' featured-role--photo' : ''}`}>
+            {featuredPhoto ? (
               <Reveal radius={20}>
                 <figure className="media featured-role__photo">
-                  <img src={featured.role.photo.src} alt={featured.role.photo.alt} loading="lazy" style={imageStyle(featured.role.photo)} />
+                  <img src={featuredPhoto.src} alt={featuredPhoto.alt} loading="lazy" style={imageStyle(featuredPhoto)} />
                   {planning && <SlotBadge kind="leadership" />}
                 </figure>
               </Reveal>
@@ -91,10 +94,10 @@ export function LeadershipSection() {
           ))}
         </div>
 
-        {(leadershipGallery.length > 0 || planning) && (
+        {(photos.length > 0 || planning) && (
           <div className="leadership__gallery">
             <Gallery
-              items={leadershipGallery}
+              items={photos}
               label={chapter.galleryLabel}
               title="leadership and community roles"
               slot={{ kind: 'leadershipGallery', folder: 'leadership-gallery', count: 5 }}

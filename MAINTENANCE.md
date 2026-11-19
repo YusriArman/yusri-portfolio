@@ -130,3 +130,7 @@ To undo the latest change while keeping history, run `git revert HEAD` and push.
 ## What is still missing
 
 See `CONTENT-CHECKLIST.md` for the photos and facts not yet supplied, and the exact filenames to use.
+
+## Supabase photo management
+
+The online photo library setup and publishing workflow are documented in [supabase/README.md](supabase/README.md). Once configured, published rows in `portfolio_photos` control portraits, project images and galleries on each page load. Local photo entries are the fallback when configuration or loading fails. `npm run photos` only prepares local files; it does not upload them.

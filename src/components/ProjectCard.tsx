@@ -1,3 +1,4 @@
+import { usePhotos } from '../photos/PhotoLibrary'
 import type { Project } from '../content/types'
 import { PhotoSlot, SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
 import { Reveal } from '../motion/Reveal'
@@ -5,9 +6,10 @@ import { imageStyle } from './imageStyle'
 import './ProjectCard.css'
 
 function Media({ project }: { project: Project }) {
+  const photo = usePhotos(`projects/${project.slug}`, project.image ? [project.image] : [])[0]
   const planning = usePhotoPlanning()
 
-  if (!project.image) {
+  if (!photo) {
     if (planning) {
       return <PhotoSlot kind="project" name={project.title} folder={`projects/${project.slug}`} className="project__slot" />
     }
@@ -21,7 +23,7 @@ function Media({ project }: { project: Project }) {
 
   const content = (
     <>
-      <img src={project.image.src} alt={project.image.alt} loading="lazy" style={imageStyle(project.image)} />
+      <img src={photo.src} alt={photo.alt} loading="lazy" style={imageStyle(photo)} />
       {planning && <SlotBadge kind="project" />}
     </>
   )

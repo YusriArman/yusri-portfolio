@@ -7,7 +7,7 @@ export type Link = {
 }
 
 export type Image = {
-  /** Path under /public, e.g. "/images/projects/elysium/preview.jpg". */
+  /** Path under /public (e.g. "/images/projects/elysium/preview.jpg") or a public HTTPS image URL. */
   src: string
   /** Describe the image for screen readers. */
   alt: string
