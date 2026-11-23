@@ -30,7 +30,14 @@ export const events: Event[] = [
     ],
     outcomes: ['1,200 freshmen attended.'],
     link: { label: 'See the Elysium platform', href: '#project-elysium' },
-    featuredPhoto: null,
-    gallery: [],
+    featuredPhoto: { src: '/images/events/orientation-party-2026/featured.jpg', alt: 'Group photo of the Orientation Party 2026 crew in a hall, in front of a screen showing the Elysium logo' },
+    gallery: [
+      { src: '/images/events/orientation-party-2026/gallery/op-3.jpg', alt: 'Light-up letters spelling Elysium on the floor of the venue' },
+      { src: '/images/events/orientation-party-2026/gallery/op-2.jpg', alt: 'An orchestra performing on stage behind a row of stage lights' },
+      { src: '/images/events/orientation-party-2026/gallery/op-4.jpg', alt: 'A band performing in front of a large screen as the audience watches' },
+      { src: '/images/events/orientation-party-2026/gallery/op-1.jpg', alt: 'Freshmen in the crowd watching the stage under bright lights' },
+      { src: '/images/events/orientation-party-2026/gallery/op-5.jpg', alt: 'A packed hall of students seen from beside the stage' },
+      { src: '/images/events/orientation-party-2026/gallery/flashmob-end.jpg', alt: 'Students gathered in front of a screen reading "The End" at the close of the night' },
+    ],
   },
 ]

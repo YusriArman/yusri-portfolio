@@ -17,7 +17,8 @@ export function PhotoLibrary({ children }: { children: ReactNode }) {
 
     async function load() {
       try {
-        const query = 'select=collection,path,alt,caption,position,fit&published=eq.true&order=sort_order.asc,id.asc'
+        // Selecting the row also supports optional metadata columns during gradual migrations.
+        const query = 'select=*&published=eq.true&order=sort_order.asc,id.asc'
         const response = await fetch(`${projectUrl}/rest/v1/portfolio_photos?${query}`, {
           headers: { apikey: publicKey },
           signal: controller.signal,
@@ -36,6 +37,7 @@ export function PhotoLibrary({ children }: { children: ReactNode }) {
             src: `${projectUrl}/storage/v1/object/public/portfolio/${row.path.trim().split('/').map(encodeURIComponent).join('/')}`,
             alt: row.alt,
             caption: row.caption || undefined,
+            note: typeof row.note === 'string' ? row.note : undefined,
             position: row.position || undefined,
             fit: row.fit === 'contain' ? 'contain' : 'cover',
           }
@@ -58,8 +60,16 @@ export function PhotoLibrary({ children }: { children: ReactNode }) {
   return <PhotoContext.Provider value={library}>{children}</PhotoContext.Provider>
 }
 
-/** An empty published collection intentionally hides its photos; errors use local content. */
+const fileName = (src: string) => decodeURIComponent(src.split('?')[0].split('/').pop() ?? '')
+
+/**
+ * Published Supabase photos come first, followed by the local photos from /public that
+ * have not been uploaded under the same file name. Single-photo slots use the first one,
+ * so a published portrait or featured photo takes over from the local one.
+ */
 export function usePhotos(collection: string, fallback: Image[]): Image[] {
-  const library = useContext(PhotoContext)
-  return library === null ? fallback : (library[collection] ?? [])
+  const online = useContext(PhotoContext)?.[collection] ?? []
+  if (online.length === 0) return fallback
+  const uploaded = new Set(online.map((photo) => fileName(photo.src)))
+  return [...online, ...fallback.filter((photo) => !uploaded.has(fileName(photo.src)))]
 }

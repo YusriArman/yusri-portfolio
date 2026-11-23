@@ -56,6 +56,8 @@ export function Lightbox({ items, index, title, getThumb, onIndexChange, onClose
   const frame = useRef<HTMLDivElement>(null)
   const touchStartX = useRef<number | null>(null)
   const closing = useRef(false)
+  const opening = useRef(false)
+  const generation = useRef(0)
   const [direction, setDirection] = useState(0)
   const reduced = useReducedMotion()
   const isOpen = index !== null
@@ -63,10 +65,12 @@ export function Lightbox({ items, index, title, getThumb, onIndexChange, onClose
   const chrome = () => Array.from(dialog.current?.querySelectorAll<HTMLElement>('[data-chrome]') ?? [])
 
   const playOpen = async (openedAt: number) => {
+    const token = ++generation.current
+    opening.current = true
     const box = frame.current
     if (!box) return
     animate(chrome(), { opacity: [0, 1] }, { duration: 0.3 })
-    if (reduced) return
+    if (reduced) { opening.current = false; return }
 
     box.style.opacity = '0'
     try {
@@ -74,26 +78,29 @@ export function Lightbox({ items, index, title, getThumb, onIndexChange, onClose
     } catch {
       // The photo could not be decoded yet; fall back to a plain fade below.
     }
+    if (token !== generation.current || closing.current || !dialog.current?.open) return
     const from = coverThumb(box, getThumb(openedAt))
     box.style.opacity = '1'
     if (from) {
-      animate(
+      await animate(
         box,
         { x: [from.x, 0], y: [from.y, 0], scale: [from.scale, 1], clipPath: [from.clipPath, OPEN_CLIP] },
         { duration: 0.5, ease: EASE_OUT },
       )
     } else {
-      animate(box, { opacity: [0, 1] }, { duration: 0.3 })
+      await animate(box, { opacity: [0, 1] }, { duration: 0.3 })
     }
+    opening.current = false
   }
 
   const requestClose = async () => {
     if (closing.current) return
     closing.current = true
+    generation.current += 1
     const box = frame.current
     // Focus goes back to the thumbnail of the photo that was showing.
     const returnTo = index !== null ? getThumb(index) : null
-    if (!reduced && box && index !== null) {
+    if (!reduced && box && index !== null && !opening.current) {
       animate(chrome(), { opacity: 0 }, { duration: 0.25 })
       const to = coverThumb(box, getThumb(index))
       if (to) await animate(box, to, { duration: 0.4, ease: EASE_OUT })
@@ -118,7 +125,7 @@ export function Lightbox({ items, index, title, getThumb, onIndexChange, onClose
   }, [isOpen])
 
   const step = (by: 1 | -1) => {
-    if (index === null || items.length < 2) return
+    if (closing.current || opening.current || index === null || items.length < 2) return
     setDirection(by)
     onIndexChange((index + by + items.length) % items.length)
   }
@@ -212,7 +219,10 @@ export function Lightbox({ items, index, title, getThumb, onIndexChange, onClose
                 <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4 6.5 10l6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
               </button>
             )}
-            <p className="lightbox__caption">{photo.caption}</p>
+            <div className="lightbox__caption">
+              {photo.caption && <p>{photo.caption}</p>}
+              {photo.note && <p>{photo.note}</p>}
+            </div>
             {many && (
               <button type="button" className="lightbox__nav" onClick={() => step(1)} aria-label="Next photo">
                 <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="m7.5 4 6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>

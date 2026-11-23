@@ -12,6 +12,8 @@ export type Image = {
   /** Describe the image for screen readers. */
   alt: string
   caption?: string
+  /** Optional personal context shown only in the enlarged viewer. */
+  note?: string
   /** "cover" fills the frame (default). "contain" shows the whole image, e.g. a logo. */
   fit?: 'cover' | 'contain'
   /** Background colour behind a "contain" image. */

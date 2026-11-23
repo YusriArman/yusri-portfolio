@@ -39,7 +39,7 @@ The slot sizes are defined once in `photo-slots.config.json`.
 
 ## Photo galleries
 
-One gallery component (`src/components/Gallery.tsx`) is used in three places: the compact strip at the end of About, the shared strip at the end of Leadership, and each event's strip. Change it once and all three follow.
+One gallery component (`src/components/Gallery.tsx`) is used in three places: at the end of About, at the end of Leadership, and within each event. All three use the section width. Change it once and all three follow.
 
 | Gallery | Originals folder | Listed in |
 | --- | --- | --- |
@@ -134,3 +134,13 @@ See `CONTENT-CHECKLIST.md` for the photos and facts not yet supplied, and the ex
 ## Supabase photo management
 
 The online photo library setup and publishing workflow are documented in [supabase/README.md](supabase/README.md). Once configured, published rows in `portfolio_photos` control portraits, project images and galleries on each page load. Local photo entries are the fallback when configuration or loading fails. `npm run photos` only prepares local files; it does not upload them.
+
+## Gentle shared galleries
+
+`Gallery.tsx` uses `GentleGallery.tsx` for all populated About, Leadership and Event galleries. The selected frame is 58% of the gallery width. All three use the section width. Empty galleries retain development planning slots and are omitted in production. `treatment="flat"` is available for future screenshot galleries; standalone project images and portraits keep their existing presentation.
+
+The track uses native horizontal scrolling and snapping for touch, mouse dragging, and ArrowLeft/ArrowRight/Home/End navigation. At the ends, controls stop rather than duplicate photos. One photo has no previous/next controls. Selecting a neighbour centres it; selecting the settled centre opens the shared Lightbox. No captions or event photographs have been invented to populate the prototype.
+
+Optional personal notes are available through `Image.note`. Run `supabase/photo-notes.sql` to add the optional `note` column in the dashboard; existing installations continue working without it. Notes display only in the enlarged viewer.
+
+Before extending this prototype, review real event photos at desktop and phone sizes; check centre/side selection, rapid clicks, touch scrolling vertically and horizontally, keyboard focus and Escape, closing after switching images, and reduced motion. The initial implementation passes the production build, but real-photo browser verification is pending the event collection being supplied.

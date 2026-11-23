@@ -83,7 +83,6 @@ export function AboutSection() {
               items={photos}
               label={chapter.galleryLabel}
               title="the introduction"
-              size="compact"
               slot={{ kind: 'introGallery', folder: 'introduction-gallery', count: 5 }}
             />
           </div>

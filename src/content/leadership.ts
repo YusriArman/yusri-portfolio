@@ -16,6 +16,7 @@ export const leadership: Organisation[] = [
         title: 'President',
         period: '2024 to 2025',
         featured: true,
+        photo: { src: '/images/leadership/president.jpg', alt: 'Yusri and a fellow orientation leader at a podium in front of a screen reading TOL 25/26 Election' },
         contributions: [
           "Led the student body that organises orientation events for every intake at Taylor's College and Taylor's University.",
           "Served as the main liaison to other student bodies and to other universities' student councils.",
