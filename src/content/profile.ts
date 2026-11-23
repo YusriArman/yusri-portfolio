@@ -16,10 +16,10 @@ export const profile = {
   availability: null as string | null,
 
   portrait: {
-    src: '/images/profile/yusri-arman.jpg',
-    alt: 'Portrait of Yusri Arman in a black suit and tie against a grey background',
-    width: 759,
-    height: 1065,
+    src: '/images/introduction-gallery/35efa35c-56b6-4fbe-87ea-797eb4c56711.jpg',
+    alt: 'Yusri Arman in a black suit, seated at a table at an indoor gathering',
+    width: 1080,
+    height: 810,
     /** Optional: which part to keep in view if the portrait is cropped, e.g. 'center top'. */
     position: undefined as string | undefined,
   },
