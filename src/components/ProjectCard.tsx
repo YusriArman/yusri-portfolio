@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { usePhotos } from '../photos/PhotoLibrary'
 import type { Project } from '../content/types'
 import { SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
@@ -28,14 +29,27 @@ function Media({ project }: { project: Project }) {
   )
 }
 
-export function ProjectCard({ project }: { project: Project }) {
+type ProjectCardProps = {
+  project: Project
+  /** "split": picture column on the left, story on the right. "stack": picture above story. */
+  layout?: 'split' | 'stack'
+  /** Shown at the top of the picture column, e.g. the chapter heading. */
+  lead?: ReactNode
+}
+
+export function ProjectCard({ project, layout = 'stack', lead }: ProjectCardProps) {
   const hasMedia = usePhotos(`projects/${project.slug}`, project.image ? [project.image] : []).length > 0
   return (
-    <article className="project" id={`project-${project.slug}`}>
-      {hasMedia && (
-        <Reveal>
-          <Media project={project} />
-        </Reveal>
+    <article className={`project project--${layout}`} id={`project-${project.slug}`}>
+      {(lead || hasMedia) && (
+        <div className="project__side">
+          {lead}
+          {hasMedia && (
+            <Reveal>
+              <Media project={project} />
+            </Reveal>
+          )}
+        </div>
       )}
 
       <div className="project__body">

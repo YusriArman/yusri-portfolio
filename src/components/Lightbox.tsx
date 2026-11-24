@@ -1,8 +1,9 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { KeyboardEvent, MouseEvent, SyntheticEvent, TouchEvent } from 'react'
 import { AnimatePresence, animate, motion, useReducedMotion } from 'motion/react'
 import type { Image } from '../content/types'
 import { EASE_OUT } from '../motion/settings'
+import { useLenis } from '../motion/SmoothScroll'
 import './Lightbox.css'
 
 type LightboxProps = {
@@ -123,6 +124,14 @@ export function Lightbox({ items, index, title, getThumb, onIndexChange, onClose
     // Runs only when the viewer opens or closes, not on every photo change.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen])
+
+  // The page behind the viewer must not glide while it is open.
+  const lenis = useLenis()
+  useEffect(() => {
+    if (!lenis || !isOpen) return
+    lenis.stop()
+    return () => lenis.start()
+  }, [lenis, isOpen])
 
   const step = (by: 1 | -1) => {
     if (closing.current || opening.current || index === null || items.length < 2) return

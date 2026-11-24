@@ -1,24 +1,13 @@
-/* Staggered two-column layout: wide, then narrow and lower, repeating. */
-.projects-grid {
+/* The remaining projects, side by side on one screen. */
+.projects-pair {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  column-gap: var(--gutter);
-  row-gap: var(--space-9);
-}
-
-.projects-grid > .project:nth-child(odd) {
-  grid-column: 1 / span 7;
-}
-
-.projects-grid > .project:nth-child(even) {
-  grid-column: 8 / span 5;
-  margin-top: clamp(4rem, 12vw, 11rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-7) var(--space-8);
+  align-items: start;
 }
 
 @media (max-width: 860px) {
-  .projects-grid > .project:nth-child(odd),
-  .projects-grid > .project:nth-child(even) {
-    grid-column: 1 / -1;
-    margin-top: 0;
+  .projects-pair {
+    grid-template-columns: 1fr;
   }
 }

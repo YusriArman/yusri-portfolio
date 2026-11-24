@@ -71,6 +71,10 @@
   --container: 1360px;
   --gutter: clamp(1rem, 4vw, 3rem);
   --section-gap: clamp(5rem, 10vw, 9rem);
+  /* Space a screen-sized scene leaves at its top for the sticky nav. */
+  --nav-clearance: 6.5rem;
+  /* How far below the top a section link lands (scroll-padding-top in base.css). */
+  --nav-scroll-offset: 8rem;
 
   /* Type scale */
   --text-sm: 0.875rem;

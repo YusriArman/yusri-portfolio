@@ -27,7 +27,8 @@
 
 /* This space stays the same size when the menu opens. */
 .nav__dock {
-  --dock-width: 214px;
+  /* Room for the song, the menu button, the theme button and the scroll percentage. */
+  --dock-width: 364px;
   position: relative;
   width: var(--dock-width);
   height: 60px;
@@ -52,7 +53,8 @@
 }
 
 .nav__shell[data-open='true'] {
-  width: min(300px, calc(100vw - 2rem));
+  /* Never narrower than the closed capsule, which now holds the song too. */
+  width: max(var(--dock-width), min(300px, calc(100vw - 2rem)));
   border-radius: 28px;
   background: var(--color-surface);
   box-shadow: 0 16px 40px var(--color-shadow);
@@ -214,9 +216,15 @@
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 600px) {
   .nav__dock {
-    --dock-width: 160px;
+    --dock-width: 260px;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav__dock {
+    --dock-width: 206px;
   }
 
   .nav__progress {

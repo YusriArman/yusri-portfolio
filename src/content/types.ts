@@ -83,3 +83,24 @@ export type Event = {
   /** Zero or more photos, shown in this order. The strip is hidden when empty. */
   gallery: Image[]
 }
+
+/** A song on the site's soundtrack. Nothing plays; the card only shows it. */
+export type Song = {
+  title: string
+  artist: string
+  /** Optional cover art. Without one, the card shows a coloured tile with the song's first letter. */
+  cover?: Image
+  /** Track length as "m:ss", e.g. "3:46". Leave out if unsure; the times are hidden until it is set. */
+  duration?: string
+  /** Set while a song is still a stand-in, so it is easy to find and replace. */
+  placeholder?: boolean
+}
+
+/** A line from a favourite book, shown when the bookmark is pulled. */
+export type Quote = {
+  text: string
+  book: string
+  /** Who says it, if anyone. */
+  character?: string
+  placeholder?: boolean
+}

@@ -4,7 +4,7 @@ import { DURATION, EASE_OUT, IN_VIEW_ONCE } from '../motion/settings'
 type ChapterHeadingProps = {
   /** e.g. "02" */
   number: string
-  /** Short story label next to the number, e.g. "What I build". */
+  /** Short story label next to the number, e.g. "What I've built". */
   label: string
   title: string
   intro?: string

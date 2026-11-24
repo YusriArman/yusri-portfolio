@@ -1,43 +1,56 @@
-/* Portrait on the left; the introduction, education and skills on the right. */
+/* Scene 1: portrait on the left; heading, paragraph, education and skills on the right. */
 .about {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
   gap: var(--space-7) var(--space-8);
-  align-items: start;
+  align-items: center;
 }
 
 .about__portrait-wrap {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
 }
 
+/* Never taller than the room left on screen, so the whole scene fits. */
 .about__portrait {
   aspect-ratio: 4 / 5;
+  max-height: calc(100svh - var(--nav-clearance) - var(--space-9));
   border-radius: var(--radius-xl);
+}
+
+.about__portrait img {
+  height: 100%;
 }
 
 .about__body {
   display: grid;
-  gap: var(--space-7);
+  gap: var(--space-4);
+}
+
+.about__body .section__head {
+  margin-bottom: 0;
 }
 
 .about__text {
   display: grid;
   gap: var(--space-5);
-  max-width: 44ch;
+  max-width: 60ch;
 }
 
 .about__para {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   line-height: 1.4;
   letter-spacing: -0.01em;
 }
 
+/* Education and skills, in a tight two-column block under the paragraph. */
 .about__facts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-6) var(--space-7);
+  gap: var(--space-4) var(--space-6);
   align-items: start;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--tone-rule);
 }
 
 .about__group {
@@ -64,9 +77,10 @@
   color: var(--color-ink-soft);
 }
 
-/* Full-width gallery, matching the other chapters. */
+/* Scene 2: the gallery, kept narrow enough that its photos fit the screen's height. */
 .about__gallery {
-  margin-top: var(--space-9);
+  max-width: min(100%, calc((100svh - var(--nav-clearance)) * 1.48));
+  margin-inline: auto;
 }
 
 @media (max-width: 860px) {
@@ -78,8 +92,8 @@
     max-width: 340px;
   }
 
-  .about__gallery {
-    margin-top: var(--space-8);
+  .about__portrait {
+    max-height: 60svh;
   }
 }
 

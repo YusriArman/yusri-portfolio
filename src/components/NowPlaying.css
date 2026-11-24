@@ -1,0 +1,121 @@
+/* The song player inside the nav capsule: cover, title, and a bar along the bottom. */
+.now-playing {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--now-playing-width, 150px);
+  height: 44px;
+  padding: 0 10px;
+  overflow: hidden;
+}
+
+/* Thin dividers either side, like the separators in the preview. */
+.now-playing::before,
+.now-playing::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  width: 1px;
+  background: color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.now-playing::before {
+  left: 0;
+}
+
+.now-playing::after {
+  right: 0;
+}
+
+.now-playing__song {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.now-playing__cover {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 0.8125rem;
+}
+
+/* Title and artist share one line; hovering swaps one for the other. */
+.now-playing__text {
+  display: grid;
+  min-width: 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.now-playing__title,
+.now-playing__artist {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.25s ease, transform 0.25s var(--ease-out);
+}
+
+.now-playing__artist {
+  opacity: 0;
+  transform: translateY(6px);
+  font-weight: 500;
+}
+
+.now-playing:hover .now-playing__title {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+.now-playing:hover .now-playing__artist {
+  opacity: 0.8;
+  transform: none;
+}
+
+/* Progress through the current chapter. */
+.now-playing__bar {
+  position: absolute;
+  left: 48px;
+  right: 12px;
+  bottom: 8px;
+  height: 2px;
+  border-radius: 1px;
+  background: color-mix(in srgb, currentColor 20%, transparent);
+  overflow: hidden;
+}
+
+.now-playing__bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 50%;
+  transform: scaleX(var(--progress));
+  background: currentColor;
+  transition: transform 0.2s linear;
+}
+
+/* On phones only the cover tile shows. */
+@media (max-width: 600px) {
+  .now-playing {
+    --now-playing-width: 46px;
+    padding: 0 8px;
+  }
+
+  .now-playing__text,
+  .now-playing__bar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .now-playing__title,
+  .now-playing__artist,
+  .now-playing__bar::after {
+    transition: none;
+  }
+}

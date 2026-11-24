@@ -10,5 +10,11 @@ export const DURATION = {
   slow: 1.15,
 }
 
+/**
+ * Trial: scrolling settles onto the nearest scene or chapter when you stop close to one.
+ * Set to false to switch it off completely. It is always off on phones and with reduced motion.
+ */
+export const SNAP_SCENES = true
+
 /** Entrances play once, when a quarter of the element is in view. */
 export const IN_VIEW_ONCE = { once: true, amount: 0.25 } as const

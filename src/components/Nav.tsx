@@ -4,6 +4,7 @@ import { profile } from '../content/profile'
 import { site } from '../content/site'
 import { RollingLink } from '../motion/RollingLink'
 import { EASE_OUT } from '../motion/settings'
+import { NowPlaying } from './NowPlaying'
 import { ScrollProgress } from './Scrollprogress'
 import './Nav.css'
 
@@ -95,6 +96,9 @@ export function Nav() {
 
               {open ? 'Close' : 'Menu'}
             </button>
+
+            {/* The song sits in the middle, so the capsule balances around it. */}
+            <NowPlaying />
 
             <button
               type="button"

@@ -1,0 +1,53 @@
+/* A tall section; its panel sticks to the screen while the words fill in. */
+.intro-scroll {
+  position: relative;
+  height: 260svh;
+  /* The About chapter's rounded top slides over the end of this section. */
+  margin-bottom: 0;
+}
+
+.intro-scroll__panel {
+  position: sticky;
+  top: 0;
+  display: grid;
+  align-items: center;
+  height: 100svh;
+  padding-top: var(--nav-clearance);
+  padding-bottom: var(--space-7);
+}
+
+.intro-scroll__text {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 22ch;
+  font-size: clamp(2rem, 4.6vw, 4.25rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.intro-scroll__line {
+  display: block;
+}
+
+/* "Hi, I'm Yusri." reads as the greeting, a step larger and in the accent colour. */
+.intro-scroll__line--hello {
+  color: var(--color-accent);
+}
+
+/* With reduced motion: one ordinary screen, everything shown. */
+.intro-scroll--still {
+  height: auto;
+}
+
+.intro-scroll--still .intro-scroll__panel {
+  position: static;
+  height: auto;
+  min-height: 80svh;
+}
+
+@media (max-width: 600px) {
+  .intro-scroll__text {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+  }
+}

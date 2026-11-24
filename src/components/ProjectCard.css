@@ -4,8 +4,33 @@
   align-content: start;
 }
 
+/* Picture column on the left (with the chapter heading above it), story on the right. */
+.project--split {
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--space-7) var(--space-8);
+  align-items: center;
+}
+
+.project__side {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+.project__side .section__head {
+  margin-bottom: 0;
+}
+
+@media (max-width: 860px) {
+  .project--split {
+    grid-template-columns: 1fr;
+  }
+}
+
 .project__media {
   aspect-ratio: 4 / 3;
+  /* Never taller than the room a scene has left. */
+  max-height: calc(100svh - var(--nav-clearance) - 16rem);
   border-radius: var(--radius-xl);
   color: inherit;
 }
@@ -18,6 +43,16 @@
   display: grid;
   gap: var(--space-4);
   max-width: 60ch;
+}
+
+/* In a scene the story is tighter, so a whole project fits on one screen. */
+.scene .project__body {
+  gap: var(--space-3);
+  max-width: 68ch;
+}
+
+.scene .project__summary {
+  font-size: var(--text-base);
 }
 
 .project__title {

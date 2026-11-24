@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'motion/react'
 import { profile } from '../content/profile'
 import { site } from '../content/site'
 import { RollingLink } from '../motion/RollingLink'
+import { useIntroReady } from '../motion/IntroContext'
 import { DURATION, EASE_OUT } from '../motion/settings'
 import './Hero.css'
 
@@ -16,18 +17,21 @@ const letter = { hidden: { y: '110%', rotate: 8 }, show: { y: '0%', rotate: 0, t
 export function Hero() {
   // With reduced motion everything in the opening is simply there from the start.
   const reduced = useReducedMotion()
+  // Wait for the boot screen to lift before playing the opening.
+  const ready = useIntroReady()
+  const play = ready ? 'show' : 'hidden'
   const chapter = site.chapters.opening
   const mailto = `mailto:${profile.email}`
 
   return (
     <section className="hero" id="contact" aria-labelledby="hero-name">
       <div className="container">
-        <motion.p className="chapter-mark hero__mark" initial={reduced ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: DURATION.base }}>
+        <motion.p className="chapter-mark hero__mark" initial={reduced ? false : { opacity: 0 }} animate={ready ? { opacity: 1 } : undefined} transition={{ duration: DURATION.base }}>
           <span className="chapter-mark__number">{chapter.number}</span>
           {chapter.label}
         </motion.p>
 
-        <motion.h1 className="hero__name" id="hero-name" aria-label={profile.fullName} initial={reduced ? false : 'hidden'} animate="show" variants={name}>
+        <motion.h1 className="hero__name" id="hero-name" aria-label={profile.fullName} initial={reduced ? false : 'hidden'} animate={play} variants={name}>
           {profile.heroName.map((line) => (
             <span className="hero__line" key={line} aria-hidden="true">
               {[...line].map((char, i) => (
@@ -43,7 +47,7 @@ export function Hero() {
           <motion.div
             className="hero__intro"
             initial={reduced ? false : { opacity: 0, y: 48 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: DURATION.base, ease: EASE_OUT, delay: 0.7 }}
           >
             <p className="hero__lede">{profile.intro}</p>
@@ -64,7 +68,7 @@ export function Hero() {
           <motion.div
             className="hero__contact"
             initial={reduced ? false : { opacity: 0, y: 48 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={ready ? { opacity: 1, y: 0 } : undefined}
             transition={{ duration: DURATION.base, ease: EASE_OUT, delay: 0.85 }}
           >
             <p className="hero__contact-label">Email</p>

@@ -1,0 +1,14 @@
+.song-cover {
+  flex: none;
+  object-fit: cover;
+}
+
+/* No cover art yet: a cyan tile with the song's first letter. */
+.song-cover--tile {
+  display: grid;
+  place-items: center;
+  background: var(--color-band);
+  color: var(--color-on-band);
+  font-weight: 800;
+  text-transform: uppercase;
+}

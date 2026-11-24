@@ -1,0 +1,45 @@
+/* A scene: one idea, sized so it fits on one screen, with an even gap to the next.
+   (Scenes no longer stretch to the full screen height: short content then left big
+   empty bands between scenes.) */
+.scene {
+  --scene-gap: clamp(4rem, 9vh, 6rem);
+  position: relative;
+  padding-top: var(--scene-gap);
+}
+
+/* The first scene of a chapter also clears the sticky nav, because section links
+   land on the chapter's very top. */
+.scene:not(.scene + .scene) {
+  padding-top: var(--nav-clearance);
+}
+
+/* The snap marker sits a nav's height above the content, wherever the content starts. */
+.scene__snap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.scene + .scene .scene__snap {
+  top: calc(var(--scene-gap) - var(--nav-clearance));
+}
+
+/* .container sets the page width and side margins; only make sure it can't shrink. */
+.scene__inner {
+  flex-shrink: 0;
+}
+
+/* A chapter made of scenes: the scenes supply the spacing above, and the chapter adds
+   room below plus what its rounded top corner needs where the next chapter overlaps. */
+.chapter--scenes {
+  padding-top: 0;
+  padding-bottom: calc(clamp(4rem, 9vh, 6rem) + var(--radius-chapter));
+}
+
+/* The heading sits closer to its content inside a scene. */
+.scene .section__head {
+  margin-bottom: var(--space-6);
+}

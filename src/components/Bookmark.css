@@ -1,0 +1,75 @@
+/* The ribbon hangs from the top edge of the About chapter, near the right. */
+.bookmark {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  /* Left of the nav's "Let's talk" button, so the two never sit on top of each other. */
+  right: clamp(9rem, 24vw, 22rem);
+}
+
+.bookmark__ribbon {
+  display: block;
+  width: 30px;
+  height: 72px;
+  padding: 0;
+  border: 0;
+  background: var(--color-accent);
+  /* A swallowtail cut at the bottom. */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+  cursor: pointer;
+  transition: height 0.7s var(--ease-out);
+}
+
+.bookmark__ribbon:hover {
+  height: 84px;
+}
+
+.bookmark__ribbon[data-open='true'] {
+  height: 150px;
+}
+
+/* clip-path hides an outline, so the focus ring is drawn by the wrapper instead. */
+.bookmark:has(.bookmark__ribbon:focus-visible) {
+  outline: 3px solid var(--tone-focus, var(--color-accent));
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.bookmark__slot {
+  position: absolute;
+  top: 48px;
+  right: 44px;
+}
+
+.bookmark__card {
+  width: 320px;
+  max-width: 70vw;
+  text-align: left;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  box-shadow: 0 16px 40px var(--color-shadow);
+  transform-origin: 100% 0%;
+}
+
+.bookmark__quote {
+  font-size: var(--text-lg);
+  line-height: 1.4;
+}
+
+.bookmark__source {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+}
+
+.bookmark__source cite {
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bookmark__ribbon {
+    transition: none;
+  }
+}
