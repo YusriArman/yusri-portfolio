@@ -33,7 +33,8 @@ export const profile = {
     { title: 'American Degree Transfer Program', place: "Taylor's University", period: '2023 to 2024' },
   ],
   skills: [
-    { group: 'Programming', items: ['C++', 'Java', 'TypeScript', 'React', 'Tailwind CSS', 'Supabase'] },
+    // Languages first, then frameworks, then data and AI tools. Each one is used in a project above or in coursework.
+    { group: 'Programming', items: ['TypeScript', 'Python', 'PHP', 'SQL', 'Java', 'C++', 'React', 'Laravel', 'FastAPI', 'Tailwind CSS', 'Supabase', 'MySQL', 'SQLite', 'Ollama'] },
     { group: 'Working with people', items: ['Project management', 'Sponsorship negotiation', 'Public speaking', 'Social media marketing'] },
     { group: 'Tools and languages', items: ['MS Office', 'Outlook', 'Canva', 'English', 'Malay'] },
   ],
