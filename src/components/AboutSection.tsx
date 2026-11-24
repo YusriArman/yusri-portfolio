@@ -1,3 +1,4 @@
+import { ChapterBackdrop } from '../motion/ChapterBackdrop'
 import { usePhotos } from '../photos/PhotoLibrary'
 import { introGallery } from '../content/galleries'
 import { profile } from '../content/profile'
@@ -17,7 +18,8 @@ export function AboutSection() {
   const showGallery = photos.length > 0 || planning
 
   return (
-    <section className="section section--plain" id="about" aria-labelledby="about-title">
+    <section className="section section--tint chapter chapter--panel" id="about" aria-labelledby="about-title">
+      <ChapterBackdrop />
       <div className="container">
         <ChapterHeading number={chapter.number} label={chapter.label} title={chapter.title} id="about-title" />
 

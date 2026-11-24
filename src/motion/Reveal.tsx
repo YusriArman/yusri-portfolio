@@ -38,7 +38,7 @@ export function Reveal({ children, className = '', radius = 28, delay = 0, immed
   const contents = reduced
     ? { hidden: {}, show: {} }
     : {
-        hidden: { scale: 1.14 },
+        hidden: { scale: 1.24 },
         show: { scale: 1, transition: { duration: DURATION.slow * 1.3, ease: EASE_OUT, delay } },
       }
 

@@ -22,7 +22,7 @@ Upload one or several images in Storage â†’ portfolio. Then open Table Editor â†
 | fit | `cover` for photos, `contain` for logos or screenshots you want shown in full |
 | published | Set true when ready; false hides it from the website |
 
-Collections: `portrait`, `introduction-gallery`, `leadership/president`, `leadership-gallery`, `projects/elysium`, `projects/moneytalks`, `events/orientation-party-2026/featured`, `events/orientation-party-2026/gallery`.
+Collections: `portrait`, `introduction-gallery`, `leadership/president`, `leadership-gallery`, `projects/elysium`, `projects/local-notes-companion`, `projects/club-treasury`, `events/orientation-party-2026/featured`, `events/orientation-party-2026/gallery`.
 
 Portrait, project, presidency and featured-event collections permit one published image each. Unpublish the old entry before publishing its replacement. The initial SQL seeds your selected portrait; its file can stay in its existing Storage folder because collection controls placement independently of path.
 

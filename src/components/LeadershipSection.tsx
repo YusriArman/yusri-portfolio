@@ -44,7 +44,7 @@ export function LeadershipSection() {
 
   return (
     <section className="section section--accent chapter chapter--panel" id="leadership" aria-labelledby="leadership-title">
-      <ChapterBackdrop />
+      <ChapterBackdrop soft />
       <div className="container">
         <ChapterHeading number={chapter.number} label={chapter.label} title={chapter.title} intro={chapter.intro} id="leadership-title" />
 

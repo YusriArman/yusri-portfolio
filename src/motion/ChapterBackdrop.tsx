@@ -1,16 +1,20 @@
 import { useRef } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 
-/** How far in from each side the panel starts, as a percentage of its width. Keep it below the page gutter. */
-const INSET = 3
+/** How far in from each side a panel starts, as a percentage of its width. Keep it below the page gutter. */
+const INSET = { full: 4, soft: 2.5 }
 
 /**
  * The coloured panel behind a chapter. It starts slightly narrower than the page and
  * opens to full width as the chapter scrolls into view. Only this empty layer is
  * clipped, so the chapter's text, layout and focus rings are never affected.
  * It only ever opens. With reduced motion it is full width from the start.
+ *
+ * `soft` starts closer to full width. The strongly coloured chapters use it, so their
+ * entrance matches the quieter chapters rather than overpowering them.
  */
-export function ChapterBackdrop() {
+export function ChapterBackdrop({ soft = false }: { soft?: boolean }) {
+  const inset = soft ? INSET.soft : INSET.full
   const ref = useRef<HTMLDivElement>(null)
   const reduced = useReducedMotion()
 
@@ -21,7 +25,7 @@ export function ChapterBackdrop() {
 
   const clipPath = useTransform(scrollYProgress, (value) => {
     furthest.current = Math.max(furthest.current, value)
-    const side = (1 - furthest.current) * INSET
+    const side = (1 - furthest.current) * inset
     return `inset(0% ${side}% 0% ${side}% round var(--radius-chapter) var(--radius-chapter) 0 0)`
   })
 

@@ -40,7 +40,7 @@
 }
 
 .section--dark .photo-slot {
-  border-color: #8aa7ff;
+  border-color: var(--color-focus-on-dark);
   background:
     repeating-linear-gradient(135deg, rgba(138, 167, 255, 0.07) 0 14px, rgba(138, 167, 255, 0.14) 14px 28px),
     #131a33;
@@ -66,7 +66,7 @@
 }
 
 .section--accent .gallery .photo-slot__path {
-  color: var(--color-on-accent-soft);
+  color: var(--color-on-band-soft);
 }
 
 /* Smaller text in the compact introduction strip. */

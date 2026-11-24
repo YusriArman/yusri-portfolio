@@ -79,7 +79,7 @@ export function EventsSection() {
   const chapter = site.chapters.events
   return (
     <section className="section section--dark chapter chapter--panel" id="events" aria-labelledby="events-title">
-      <ChapterBackdrop />
+      <ChapterBackdrop soft />
       <div className="container">
         <ChapterHeading number={chapter.number} label={chapter.label} title={chapter.title} intro={chapter.intro} id="events-title" />
 

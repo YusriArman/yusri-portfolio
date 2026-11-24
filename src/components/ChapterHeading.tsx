@@ -12,9 +12,9 @@ type ChapterHeadingProps = {
   id: string
 }
 
-const group = { hidden: {}, show: { transition: { staggerChildren: 0.09 } } }
-const fade = { hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0, transition: { duration: DURATION.base, ease: EASE_OUT } } }
-const rise = { hidden: { y: '105%' }, show: { y: '0%', transition: { duration: DURATION.slow, ease: EASE_OUT } } }
+const group = { hidden: {}, show: { transition: { staggerChildren: 0.12 } } }
+const fade = { hidden: { opacity: 0, y: 32 }, show: { opacity: 1, y: 0, transition: { duration: DURATION.base, ease: EASE_OUT } } }
+const rise = { hidden: { y: '105%', rotate: 3 }, show: { y: '0%', rotate: 0, transition: { duration: DURATION.slow, ease: EASE_OUT } } }
 
 /** Chapter number, strong heading and one connecting sentence. Enters once when scrolled into view. */
 export function ChapterHeading({ number, label, title, intro, id }: ChapterHeadingProps) {

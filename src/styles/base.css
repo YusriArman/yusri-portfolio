@@ -99,12 +99,12 @@ main {
 }
 
 .section--accent {
-  --chapter-bg: var(--color-accent);
+  --chapter-bg: var(--color-band);
   background: var(--chapter-bg);
-  color: var(--color-accent-ink);
-  --tone-soft: var(--color-on-accent-soft);
-  --tone-rule: rgba(255, 255, 255, 0.35);
-  --tone-focus: #fff;
+  color: var(--color-on-band);
+  --tone-soft: var(--color-on-band-soft);
+  --tone-rule: color-mix(in srgb, var(--color-on-band) 35%, transparent);
+  --tone-focus: var(--color-on-band);
 }
 
 .section--dark {
@@ -113,14 +113,15 @@ main {
   color: var(--color-on-dark);
   --tone-soft: var(--color-on-dark-soft);
   --tone-rule: var(--color-line-dark);
-  --tone-pill: #1a2240;
-  --tone-focus: #8aa7ff;
+  --tone-pill: var(--color-pill-dark);
+  --tone-focus: var(--color-focus-on-dark);
 }
 
 /* A chapter that sits directly on the page colour and follows on from the opening. */
-.section--plain {
-  background: var(--color-page);
-  padding-top: 0;
+/* The about chapter: a soft cyan step away from the opening. */
+.section--tint {
+  --chapter-bg: var(--color-about);
+  background: var(--chapter-bg);
   --tone-pill: var(--color-surface);
 }
 
@@ -133,12 +134,16 @@ main {
   isolation: isolate;
 }
 
+.section--tint + .chapter--panel {
+  --chapter-behind: var(--color-about);
+}
+
 .section--light + .chapter--panel {
   --chapter-behind: var(--color-surface-soft);
 }
 
 .section--accent + .chapter--panel {
-  --chapter-behind: var(--color-accent);
+  --chapter-behind: var(--color-band);
 }
 
 .section--dark + .chapter--panel {
@@ -199,6 +204,7 @@ main {
 
 .mask__inner {
   display: block;
+  transform-origin: 0% 100%;
 }
 
 /* White rounded surface. Resets the tone so it reads the same on any chapter. */

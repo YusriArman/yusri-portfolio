@@ -6,8 +6,8 @@ import { DURATION, EASE_OUT } from '../motion/settings'
 import './Hero.css'
 
 // The name enters one letter at a time; the description and contact details follow.
-const name = { hidden: {}, show: { transition: { staggerChildren: 0.035, delayChildren: 0.05 } } }
-const letter = { hidden: { y: '108%' }, show: { y: '0%', transition: { duration: 0.8, ease: EASE_OUT } } }
+const name = { hidden: {}, show: { transition: { staggerChildren: 0.05, delayChildren: 0.1 } } }
+const letter = { hidden: { y: '110%', rotate: 8 }, show: { y: '0%', rotate: 0, transition: { duration: 1.1, ease: EASE_OUT } } }
 
 /**
  * Chapter 01, the opening: who you are, then how to reach you straight away.
@@ -42,9 +42,9 @@ export function Hero() {
         <div className="hero__row">
           <motion.div
             className="hero__intro"
-            initial={reduced ? false : { opacity: 0, y: 24 }}
+            initial={reduced ? false : { opacity: 0, y: 48 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: DURATION.base, ease: EASE_OUT, delay: 0.5 }}
+            transition={{ duration: DURATION.base, ease: EASE_OUT, delay: 0.7 }}
           >
             <p className="hero__lede">{profile.intro}</p>
             <p className="hero__invite">
@@ -63,9 +63,9 @@ export function Hero() {
 
           <motion.div
             className="hero__contact"
-            initial={reduced ? false : { opacity: 0, y: 24 }}
+            initial={reduced ? false : { opacity: 0, y: 48 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: DURATION.base, ease: EASE_OUT, delay: 0.6 }}
+            transition={{ duration: DURATION.base, ease: EASE_OUT, delay: 0.85 }}
           >
             <p className="hero__contact-label">Email</p>
             <a className="hero__email" href={mailto}>

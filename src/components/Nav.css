@@ -55,7 +55,7 @@
   width: min(300px, calc(100vw - 2rem));
   border-radius: 28px;
   background: var(--color-surface);
-  box-shadow: 0 16px 40px rgb(15 22 38 / 15%);
+  box-shadow: 0 16px 40px var(--color-shadow);
 }
 
 .nav__controls {
@@ -66,6 +66,8 @@
   border-radius: var(--radius-pill);
   background: var(--color-ink);
   color: var(--color-surface);
+  /* A faint light ring keeps the capsule visible over the dark events band. */
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 22%);
 }
 
 .nav__toggle,
@@ -181,6 +183,8 @@
   background: var(--color-accent);
   color: var(--color-accent-ink);
   font-weight: 600;
+  /* Keeps the button distinct while it passes over the cyan leadership chapter. */
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 45%);
   text-decoration: none;
 }
 

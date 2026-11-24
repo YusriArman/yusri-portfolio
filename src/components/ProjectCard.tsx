@@ -1,6 +1,6 @@
 import { usePhotos } from '../photos/PhotoLibrary'
 import type { Project } from '../content/types'
-import { PhotoSlot, SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
+import { SlotBadge, usePhotoPlanning } from '../dev/photoPlanning'
 import { Reveal } from '../motion/Reveal'
 import { imageStyle } from './imageStyle'
 import './ProjectCard.css'
@@ -9,17 +9,8 @@ function Media({ project }: { project: Project }) {
   const photo = usePhotos(`projects/${project.slug}`, project.image ? [project.image] : [])[0]
   const planning = usePhotoPlanning()
 
-  if (!photo) {
-    if (planning) {
-      return <PhotoSlot kind="project" name={project.title} folder={`projects/${project.slug}`} className="project__slot" />
-    }
-    // No image yet: a typographic tile so the layout still reads as a project preview.
-    return (
-      <div className="project__media project__media--text media" aria-hidden="true">
-        <span>{project.title}</span>
-      </div>
-    )
-  }
+  // No picture yet: show nothing rather than an empty tile, so the text starts at the top.
+  if (!photo) return null
 
   const content = (
     <>
@@ -38,11 +29,14 @@ function Media({ project }: { project: Project }) {
 }
 
 export function ProjectCard({ project }: { project: Project }) {
+  const hasMedia = usePhotos(`projects/${project.slug}`, project.image ? [project.image] : []).length > 0
   return (
     <article className="project" id={`project-${project.slug}`}>
-      <Reveal>
-        <Media project={project} />
-      </Reveal>
+      {hasMedia && (
+        <Reveal>
+          <Media project={project} />
+        </Reveal>
+      )}
 
       <div className="project__body">
         <h3 className="project__title">{project.title}</h3>

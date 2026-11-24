@@ -14,7 +14,8 @@ Run `npm run dev` and open http://localhost:5173 to see every slot below as a la
 | --- | --- | --- | --- | --- |
 | **Portrait** | 02 About | You from the chest up, facing the camera, on a plain or softly blurred background. Leave some space above your head. The CV photo is in place now. | 4:5 portrait, at least 1200 × 1500 px | `portrait/` |
 | **Project screenshot: Elysium ticketing platform** | 03 Projects | The registration home screen or the collection-slot picker on a desktop screen, without the browser's address bar. The event logo is in place now. | 4:3 landscape, at least 1600 × 1200 px | `projects/elysium/` |
-| **Project screenshot: MoneyTalks** | 03 Projects | The main dashboard or the voice-logging screen. | 4:3 landscape, at least 1600 × 1200 px | `projects/moneytalks/` |
+| **Project screenshot: Local Notes Companion** | 03 Projects | The Ask screen showing an answer with its sources. | 4:3 landscape, at least 1600 × 1200 px | `projects/local-notes-companion/` |
+| **Project screenshot: Club Treasury Tracker** | 03 Projects | The account ledger, once there is a screen to show. | 4:3 landscape, at least 1600 × 1200 px | `projects/club-treasury/` |
 | **Presidency photograph** | 04 Leadership | You leading or addressing the Orientation Leaders, or a committee group photograph with you clearly visible. | 4:3 landscape, at least 1600 × 1200 px | `leadership/president/` |
 | **Featured event photograph** | 05 Events | A wide view of Orientation Party 2026 that shows scale: the crowd and stage together. Keep the main subject near the middle, because the edges may be trimmed. | 16:9 landscape, at least 2400 × 1350 px | `events/orientation-party-2026/featured/` |
 
@@ -42,7 +43,6 @@ Only use photographs you have the right to publish, and check that people who ar
 
 ## Facts to confirm or supply
 
-- **MoneyTalks:** which parts you personally built, the technologies used, a repository or demo link, and optionally the problem it set out to solve and what came of it. The card currently uses the team-level description from your CV and shows no problem, outcome, technologies or links.
 - **Elysium waitlist size:** your CV says 500, the repository README says 200 in one place and 500 in another. The number is left off the page until you confirm it.
 - **Elysium team size:** your CV says a team of four, the README credits three people. The page says "a student team".
 - **Elysium live site:** https://op-26-olive.vercel.app returns 404. The link is left off. If you redeploy it, add it back under `links` in `src/content/projects.ts`.

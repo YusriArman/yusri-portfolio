@@ -19,8 +19,8 @@ export function ScrollExpand({ children, className = '', radius = 28 }: { childr
     if (value > furthest.get()) furthest.set(value)
   })
 
-  const clipPath = useTransform(furthest, [0, 1], [`inset(9% 12% 9% 12% round ${radius}px)`, `inset(0% 0% 0% 0% round ${radius}px)`])
-  const scale = useTransform(furthest, [0, 1], [1.16, 1])
+  const clipPath = useTransform(furthest, [0, 1], [`inset(12% 16% 12% 16% round ${radius}px)`, `inset(0% 0% 0% 0% round ${radius}px)`])
+  const scale = useTransform(furthest, [0, 1], [1.28, 1])
 
   return (
     <motion.div ref={ref} className={`scroll-expand ${className}`} style={reduced ? undefined : { clipPath }}>

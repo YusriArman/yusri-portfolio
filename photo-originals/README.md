@@ -7,7 +7,8 @@ Put your original, full-size photographs here. You do not need to resize, crop o
 | `portrait/` | 01 Introduction, beside your name | 1 |
 | `introduction-gallery/` | 01 Introduction, the compact photo strip under the portrait | 4 to 6 |
 | `projects/elysium/` | 02 Projects, the Elysium screenshot | 1 |
-| `projects/moneytalks/` | 02 Projects, the MoneyTalks screenshot | 1 |
+| `projects/local-notes-companion/` | 03 Projects, the Local Notes Companion screenshot | 1 |
+| `projects/club-treasury/` | 03 Projects, the Club Treasury Tracker screenshot | 1 |
 | `leadership/president/` | 03 Leadership, the presidency card | 1 |
 | `leadership-gallery/` | 03 Leadership, the shared photo strip after the roles | 4 to 8 |
 | `events/orientation-party-2026/featured/` | 04 Events, the large photograph | 1 |

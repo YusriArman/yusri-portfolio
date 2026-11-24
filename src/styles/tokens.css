@@ -6,32 +6,43 @@
   /* Typeface: Archivo Variable (weight 100-900, width 62-125). */
   --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
 
-  /* Colours */
-  --color-page: #dce8fa;
-  /* pale blue page background */
-  --color-surface: #ffffff;
-  /* white rounded surfaces */
-  --color-surface-soft: #f5f8fe;
-  /* lighter background of the projects chapter */
-  --color-tint: #eef4fd;
-  /* lighter blue for pills */
-  --color-line: #b9cbe8;
+  /* Colours: the "Glacier" palette. Every pairing below meets WCAG AA contrast. */
+  --color-page: #e9f2f3;
+  /* frosted cyan-white page background */
+  --color-surface: #fbfefe;
+  /* near-white rounded surfaces */
+  --color-surface-soft: #ffffff;
+  /* the projects chapter: a clear step lighter than the page */
+  --color-about: #dbeaec;
+  /* the about chapter: a soft step deeper than the page */
+  --color-tint: #dcebed;
+  /* pale cyan for pills */
+  --color-line: #b3cdd1;
   /* hairlines on light */
-  --color-ink: #0f1626;
+  --color-ink: #0c1a1d;
   /* main text */
-  --color-ink-soft: #4b566c;
+  --color-ink-soft: #4a5d62;
   /* secondary text */
-  --color-dark: #0b1020;
+  --color-dark: #0a1517;
   /* the dark event band */
-  --color-on-dark: #eef3fc;
+  --color-on-dark: #e6f3f4;
   /* text on the dark band */
-  --color-on-dark-soft: #a7b4cc;
-  --color-line-dark: #2a3454;
-  --color-accent: #1f4fe0;
+  --color-on-dark-soft: #93a9ad;
+  --color-line-dark: #20363a;
+  --color-pill-dark: #16292d;
+  /* pills on the dark band */
+  --color-focus-on-dark: #5ed3e2;
+  /* focus ring on the dark band and in the photo viewer */
+  --color-accent: #0a6573;
   /* links, buttons, focus ring */
   --color-accent-ink: #ffffff;
-  --color-on-accent-soft: #d6e0fb;
-  /* secondary text on the blue leadership chapter */
+  /* text on an accent button */
+  --color-band: #0a6573;
+  /* the deep cyan leadership chapter */
+  --color-on-band: #ffffff;
+  --color-on-band-soft: #c4e6ea;
+  /* secondary text on the leadership chapter */
+  --color-shadow: rgb(10 21 23 / 15%);
   --color-missing: #9a3412;
   /* "Missing" development notes */
   --color-missing-bg: #ffedd5;
@@ -72,22 +83,33 @@
   --leading-body: 1.55;
 
   /* Motion */
-  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --dur-reveal: 0.9s;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-reveal: 1.15s;
   --dur-hover: 0.6s;
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --color-page: #0e1526;
-  --color-surface: #182238;
-  --color-surface-soft: #121c30;
-  --color-tint: #25334d;
+  --color-page: #0a1214;
+  --color-surface: #132023;
+  --color-surface-soft: #16262a;
+  --color-about: #0f1b1e;
+  --color-tint: #1c2f33;
 
-  --color-ink: #eef3fc;
-  --color-ink-soft: #aab7d0;
-  --color-line: #344563;
+  --color-ink: #e6f3f4;
+  --color-ink-soft: #9fb4b8;
+  --color-line: #26393d;
 
-  --color-dark: #080d18;
+  --color-dark: #040a0b;
+  --color-on-dark-soft: #8fa5a9;
+  --color-pill-dark: #13262a;
+
+  /* Bright cyan for links and buttons; the chapter stays deep so its text stays calm. */
+  --color-accent: #5ed3e2;
+  --color-accent-ink: #04262b;
+  --color-band: #0d3c44;
+  --color-on-band: #e6f3f4;
+  --color-on-band-soft: #a9dbe2;
+  --color-shadow: rgb(0 0 0 / 40%);
 }

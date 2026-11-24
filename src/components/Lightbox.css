@@ -14,7 +14,7 @@ html:has(.lightbox[open]) {
   background: transparent;
   color: var(--color-on-dark);
   overflow: hidden;
-  --tone-focus: #8aa7ff;
+  --tone-focus: var(--color-focus-on-dark);
 }
 
 .lightbox::backdrop {
@@ -70,7 +70,7 @@ html:has(.lightbox[open]) {
 
 .lightbox__close:hover,
 .lightbox__nav:hover {
-  background: #1a2240;
+  background: var(--color-line-dark);
 }
 
 .lightbox__figure {

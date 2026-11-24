@@ -1,13 +1,13 @@
 // Shared motion settings. Change a value here and every animation follows.
 
-/** The easing used across the site: quick start, soft landing. */
-export const EASE_OUT: [number, number, number, number] = [0.2, 0.8, 0.2, 1]
+/** The easing used across the site: a fast, decisive start and a long, soft landing. */
+export const EASE_OUT: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 /** Durations in seconds. */
 export const DURATION = {
-  quick: 0.25,
-  base: 0.6,
-  slow: 0.9,
+  quick: 0.3,
+  base: 0.8,
+  slow: 1.15,
 }
 
 /** Entrances play once, when a quarter of the element is in view. */

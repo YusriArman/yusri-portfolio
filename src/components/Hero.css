@@ -30,6 +30,8 @@
 
 .hero__letter {
   display: inline-block;
+  /* Letters tip up from their bottom-left corner as they rise into place. */
+  transform-origin: 0% 100%;
 }
 
 .hero__row {
