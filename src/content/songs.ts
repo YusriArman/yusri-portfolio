@@ -13,8 +13,7 @@ export const songs: Record<'opening' | 'about' | 'projects' | 'leadership' | 'ev
   about: { title: 'About You', artist: 'The 1975' },
   projects: { title: 'Multo', artist: 'Cup of Joe' },
   leadership: { title: 'Night Changes', artist: 'One Direction' },
-  // Placeholder: pick a song for the events chapter.
-  events: { title: 'Your events song', artist: 'Add it in songs.ts', placeholder: true },
+  events: { title: 'Daisies', artist: 'Justin Bieber' },
 }
 
 export type ChapterKey = keyof typeof songs

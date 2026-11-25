@@ -149,8 +149,8 @@ Before extending this prototype, review real event photos at desktop and phone s
 
 These make the site feel personal rather than add information. None of them play sound.
 
-- **Songs:** `src/content/songs.ts` holds one song per chapter. The site's only player is in the nav capsule (`NowPlaying.tsx`): it shows the song of the chapter you are reading, and its thin bar fills as you scroll through that chapter. Hovering swaps the title for the artist. Without a `cover`, a song shows a cyan tile with its first letter (`SongCover.tsx`). The events song is still a placeholder.
-- **Bookmark quotes:** `src/content/quotes.ts`. The ribbon at the top of About (`Bookmark.tsx`) shows a random quote on each pull, never the same one twice in a row. The three entries there are placeholders to replace with your own lines.
+- **Songs:** `src/content/songs.ts` holds one song per chapter. The site's only player is in the nav capsule (`NowPlaying.tsx`): it shows the song of the chapter you are reading, and its thin bar fills as you scroll through that chapter. Hovering swaps the title for the artist. Without a `cover`, a song shows a cyan tile with its first letter (`SongCover.tsx`).
+- **Bookmark quotes:** `src/content/quotes.ts`. The ribbon at the top of About (`Bookmark.tsx`) drops a card with a random quote on each pull, never the same one twice in a row. A small "pull me" arrow sits beside the ribbon until it is pulled once per visit. Add or change lines in `quotes.ts`; add `character` to show who says one.
 - **Boot screen:** `BootSplash.tsx`. It plays once per browser session, not for links to a section such as `/#projects`, and never with reduced motion. A click, key or scroll skips it, and it removes itself after about 3.5 seconds whatever happens. Its typed lines are `site.boot` in `src/content/site.ts`. To see it again in development, clear the site's session storage or open a private window. The opening waits for it through `src/motion/IntroContext.tsx`.
 
 ## Journey, scenes and scrolling

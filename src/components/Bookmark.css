@@ -68,8 +68,49 @@
   font-style: italic;
 }
 
+/* "pull me" hint beside the ribbon, shown until the first pull of the visit. */
+.bookmark__hint {
+  position: absolute;
+  top: 18px;
+  right: calc(100% + 6px);
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  color: var(--color-ink-soft);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.bookmark__hint-text {
+  margin-bottom: 26px;
+  font-family: 'Segoe Print', 'Bradley Hand', 'Comic Sans MS', cursive;
+  font-size: var(--text-base);
+  transform: rotate(-8deg);
+}
+
+.bookmark__hint-arrow {
+  animation: bookmark-nudge 3.2s var(--ease-out) infinite;
+}
+
+@keyframes bookmark-nudge {
+  0%, 70%, 100% { transform: translateX(0); }
+  78% { transform: translateX(5px) rotate(3deg); }
+  86% { transform: translateX(-1px); }
+  92% { transform: translateX(3px); }
+}
+
+@media (max-width: 600px) {
+  .bookmark__hint {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bookmark__ribbon {
     transition: none;
+  }
+
+  .bookmark__hint-arrow {
+    animation: none;
   }
 }

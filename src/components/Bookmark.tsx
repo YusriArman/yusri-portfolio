@@ -4,6 +4,17 @@ import { quotes } from '../content/quotes'
 import { DURATION, EASE_OUT } from '../motion/settings'
 import './Bookmark.css'
 
+/** Remembers, for this visit only, that the bookmark has been pulled once. */
+const PULLED_KEY = 'bookmark-pulled'
+
+function wasPulled() {
+  try {
+    return sessionStorage.getItem(PULLED_KEY) === '1'
+  } catch {
+    return false
+  }
+}
+
 /** A random quote index, never the same as the one just shown. */
 function nextIndex(previous: number | null) {
   if (quotes.length < 2) return 0
@@ -20,6 +31,7 @@ function nextIndex(previous: number | null) {
 export function Bookmark() {
   const [index, setIndex] = useState<number | null>(null)
   const [open, setOpen] = useState(false)
+  const [pulled, setPulled] = useState(wasPulled)
   const reduced = useReducedMotion()
   const cardId = useId()
   const button = useRef<HTMLButtonElement>(null)
@@ -41,12 +53,39 @@ export function Bookmark() {
   const toggle = () => {
     if (!open) setIndex((previous) => nextIndex(previous))
     setOpen(!open)
+    if (!pulled) {
+      setPulled(true)
+      try {
+        sessionStorage.setItem(PULLED_KEY, '1')
+      } catch {
+        // Private browsing can block storage; the arrow then just returns next visit.
+      }
+    }
   }
 
   const quote = index === null ? null : quotes[index]
 
   return (
     <div className="bookmark">
+      {/* A small hand-drawn "pull me" hint, shown until the first pull of the visit. */}
+      <AnimatePresence>
+        {!pulled && (
+          <motion.div
+            className="bookmark__hint"
+            aria-hidden="true"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { delay: 0.6, duration: DURATION.base } }}
+            exit={{ opacity: 0, transition: { duration: DURATION.quick } }}
+          >
+            <span className="bookmark__hint-text">pull me</span>
+            <svg className="bookmark__hint-arrow" width="58" height="40" viewBox="0 0 58 40">
+              <path d="M3 6c6 18 16 26 30 24 7-1 10-6 7-10s-9-1-7 5c2 5 9 8 21 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <path d="M47 25l8 6-9 4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <button
         ref={button}
         type="button"
